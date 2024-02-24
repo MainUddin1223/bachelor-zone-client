@@ -1,0 +1,8 @@
+.container {
+  background-color: rgb(222, 205, 205);
+}
+.header_container {
+  width: 80%;
+  margin: 0 auto;
+  padding: 10px;
+}

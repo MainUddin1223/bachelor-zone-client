@@ -1,10 +1,13 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+
+import Dashboard from "@/components/Dashboard/Dashboard";
+import Header from "@/components/header/Header"
+
 
 export default function Home() {
   return (
-    <main className={styles.main}>
-      <h1>Hello bachelor zone</h1>
+    <main >
+      <Header />
+      <Dashboard/>
     </main>
   );
 }
