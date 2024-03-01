@@ -3,30 +3,42 @@ import Styles from './Header.module.css'
 import { Switch, Flex, ConfigProvider } from 'antd';
 import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
 import { useEffect } from 'react';
+import Link from 'next/link';
+import { addBasicData } from '@/redux/slice/basicSlice';
+import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
 const Header = () => {
-    const getSetLanguage = getFromLocalStorage('lang');
+  const { basicData } = useAppSelector((state) => state.basicSlice);
+  const dispatch = useAppDispatch()
+  const getSetLanguage = getFromLocalStorage('lang');
     useEffect(() => {  
       if (!getSetLanguage) {
-        setToLocalStorage('lang','eng')
+        setToLocalStorage('lang', 'eng')
+        dispatch(addBasicData({lang:'eng'}))
+      } else {
+         dispatch(addBasicData({lang:getSetLanguage}))
       }
-    },[])
+    }, [])
+  
     const handleChangeLanguage = (isChecked: boolean) => {
         if (isChecked) {
-            setToLocalStorage('lang','বাং')
+          setToLocalStorage('lang', 'বাং')
+          dispatch(addBasicData({lang:'বাং'}))
         } else {
-             setToLocalStorage('lang','eng')
+          setToLocalStorage('lang', 'eng')
+          dispatch(addBasicData({lang:'eng'}))
         }
-    }
+  }
+  
   return (
       <div className={Styles.container}>
           <div className={Styles.header_container}>       
-          <Flex justify='space-between'>
+          <Flex justify='space-between' align='center'>
               <div> 
-                  <h3>Bachelor Zone</h3>
+                  <h1>Bachelor Zone</h1>
               </div>
-                  <div>
-                      Login
+                  <div className={Styles.login_container}>
+                      <Link href={'#'} className={Styles.login_button}>Login</Link>
                       <ConfigProvider
   theme={{
     components: {
@@ -36,7 +48,7 @@ const Header = () => {
     },
   }}
 >
-                          <Switch checkedChildren="বাং" unCheckedChildren="ENG" defaultChecked={getSetLanguage== 'বাং'?true:false } onChange={(value)=>handleChangeLanguage(value)}/>
+                          <Switch checkedChildren="বাং" unCheckedChildren="ENG" defaultChecked={basicData.lang== 'বাং'?true:false } onChange={(value)=>handleChangeLanguage(value)}/>
 </ConfigProvider>
 
               </div>
