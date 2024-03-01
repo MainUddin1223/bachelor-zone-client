@@ -11,14 +11,16 @@ const Header = () => {
   const { basicData } = useAppSelector((state) => state.basicSlice);
   const dispatch = useAppDispatch()
   const getSetLanguage = getFromLocalStorage('lang');
-    useEffect(() => {  
+  useEffect(() => { 
       if (!getSetLanguage) {
-        setToLocalStorage('lang', 'eng')
-        dispatch(addBasicData({lang:'eng'}))
+        setToLocalStorage('lang', 'বাং')
+        dispatch(addBasicData({lang:getSetLanguage}))
       } else {
          dispatch(addBasicData({lang:getSetLanguage}))
-      }
-    }, [])
+    }
+     console.log(basicData.lang)
+    }, [basicData.lang,getSetLanguage])
+
   
     const handleChangeLanguage = (isChecked: boolean) => {
         if (isChecked) {
@@ -48,7 +50,7 @@ const Header = () => {
     },
   }}
 >
-                          <Switch checkedChildren="বাং" unCheckedChildren="ENG" defaultChecked={basicData.lang== 'বাং'?true:false } onChange={(value)=>handleChangeLanguage(value)}/>
+                          <Switch checkedChildren="বাং" unCheckedChildren="ENG" value={basicData.lang== 'eng'?false:true } onChange={(value)=>handleChangeLanguage(value)}/>
 </ConfigProvider>
 
               </div>
