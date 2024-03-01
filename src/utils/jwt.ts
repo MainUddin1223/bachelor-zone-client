@@ -1,4 +1,4 @@
-import jwtDecode from "jwt-decode";
+import { jwtDecode } from "jwt-decode";
 import { getFromLocalStorage } from "./local-storage";
 
 export const decodeToken = (token: string) => {
