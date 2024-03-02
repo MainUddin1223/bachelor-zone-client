@@ -11,6 +11,7 @@ const Header = () => {
   const { basicData } = useAppSelector((state) => state.basicSlice);
   const dispatch = useAppDispatch()
   const getSetLanguage = getFromLocalStorage('lang');
+  
   useEffect(() => { 
       if (!getSetLanguage) {
         setToLocalStorage('lang', 'বাং')
@@ -18,7 +19,6 @@ const Header = () => {
       } else {
          dispatch(addBasicData({lang:getSetLanguage}))
     }
-     console.log(basicData.lang)
     }, [basicData.lang,getSetLanguage])
 
   
@@ -37,7 +37,7 @@ const Header = () => {
           <div className={Styles.header_container}>       
           <Flex justify='space-between' align='center'>
               <div> 
-                  <h1>Bachelor Zone</h1>
+                  <h1 className={Styles.text_logo}>Bachelor Zone</h1>
               </div>
                   <div className={Styles.login_container}>
                       <Link href={'#'} className={Styles.login_button}>Login</Link>

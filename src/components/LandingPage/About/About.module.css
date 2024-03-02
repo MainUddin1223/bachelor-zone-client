@@ -1,0 +1,23 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.heading {
+  text-align: center;
+  padding: 20px;
+}
+/* Smartphone */
+@media (max-width: 576px) {
+  .container {
+    width: 95%;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  /* CSS rules for screens wider than 1200px (e.g., large desktops) */
+  .container {
+    width: 1000px;
+  }
+}

@@ -1,8 +1,36 @@
 .container {
   width: 80%;
   margin: 0 auto;
+  margin-top: 40px;
 }
 .service_header {
   text-align: center;
-  padding: 15px;
+  padding: 20px;
+}
+.service_card {
+  text-align: center;
+  padding: 50px 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+}
+.service_card p {
+  font-size: 21px;
+  font-weight: bold;
+}
+.approval_img {
+  width: 150px;
+  height: 150px;
+}
+/* Smartphone */
+@media (max-width: 576px) {
+  .container {
+    width: 95%;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  /* CSS rules for screens wider than 1200px (e.g., large desktops) */
+  .container {
+    width: 1000px;
+  }
 }
