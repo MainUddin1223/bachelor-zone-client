@@ -10,7 +10,7 @@
 .pricing_card_container {
   background-color: var(--secondary-color);
   box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
-  max-width: 300px;
+  max-width: 350px;
   margin: 20px auto;
   padding: 15px;
 }

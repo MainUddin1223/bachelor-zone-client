@@ -7,6 +7,20 @@
   text-align: center;
   padding: 20px;
 }
+.about_section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.about_image {
+  width: 50%;
+}
+.about_text {
+  width: 50%;
+  text-align: justify;
+  font-size: 17px;
+  line-height: 21px;
+}
 /* Smartphone */
 @media (max-width: 576px) {
   .container {
