@@ -1,5 +1,5 @@
 .container {
-  background-color: rgb(222, 205, 205);
+  background-color: var(--secondary-color);
   position: sticky;
   top: 0;
   z-index: 99;

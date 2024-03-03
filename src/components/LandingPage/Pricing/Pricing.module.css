@@ -1,0 +1,35 @@
+.container {
+  width: 80%;
+  margin: 0 auto;
+  margin-top: 40px;
+}
+.pricing_header {
+  text-align: center;
+  padding: 20px;
+}
+.pricing_card_container {
+  background-color: var(--secondary-color);
+  box-shadow: rgba(149, 157, 165, 0.2) 0px 8px 24px;
+  max-width: 300px;
+  margin: 20px auto;
+  padding: 15px;
+}
+.card_header {
+  text-align: center;
+  padding: 10px;
+  font-size: 18px;
+}
+.price_tag {
+  text-align: center;
+  font-weight: bold;
+}
+.price {
+  font-size: 18px;
+}
+.card_points {
+  margin-top: 20px;
+  font-size: 17px;
+}
+.card_points p {
+  padding: 5px 0;
+}
