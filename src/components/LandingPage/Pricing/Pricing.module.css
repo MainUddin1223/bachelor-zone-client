@@ -33,3 +33,17 @@
 .card_points p {
   padding: 5px 0;
 }
+/* Smartphone */
+@media (max-width: 576px) {
+  .container {
+    width: 95%;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+  /* CSS rules for screens wider than 1200px (e.g., large desktops) */
+  .container {
+    width: 1000px;
+  }
+}

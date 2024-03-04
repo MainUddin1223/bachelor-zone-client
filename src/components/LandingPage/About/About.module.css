@@ -12,14 +12,11 @@
   align-items: center;
   justify-content: center;
 }
-.about_image {
-  width: 50%;
-}
 .about_text {
-  width: 50%;
   text-align: justify;
   font-size: 17px;
-  line-height: 21px;
+  line-height: 25px;
+  padding: 20px;
 }
 /* Smartphone */
 @media (max-width: 576px) {
