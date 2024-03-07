@@ -9,8 +9,9 @@
   margin: 0 auto;
   padding: 10px;
 }
-.logo_text {
+.text_logo {
   font-size: 2rem;
+  cursor: pointer;
 }
 .login_container {
   display: flex;

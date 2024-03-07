@@ -6,11 +6,13 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { addBasicData } from '@/redux/slice/basicSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
 
 const Header = () => {
   const { basicData } = useAppSelector((state) => state.basicSlice);
   const dispatch = useAppDispatch()
   const getSetLanguage = getFromLocalStorage('lang');
+  const router = useRouter()
   
   useEffect(() => { 
       if (!getSetLanguage) {
@@ -37,10 +39,10 @@ const Header = () => {
           <div className={Styles.header_container}>       
           <Flex justify='space-between' align='center'>
               <div> 
-                  <h1 className={Styles.text_logo}>Bachelor Zone</h1>
+                  <h1 className={Styles.text_logo} onClick={()=>router.push('/')}>Bachelor Zone</h1>
               </div>
                   <div className={Styles.login_container}>
-                      <Link href={'#'} className={Styles.login_button}>Login</Link>
+                      <Link href={'/login'} className={Styles.login_button}>Login</Link>
                       <ConfigProvider
   theme={{
     components: {
