@@ -7,8 +7,6 @@ import Hero from "@/components/LandingPage/Hero/Hero";
 import Pricing from "@/components/LandingPage/Pricing/Pricing";
 import Services from "@/components/LandingPage/Services/Services";
 import Header from "@/components/header/Header"
-import { getFromLocalStorage, setToLocalStorage } from "@/utils/local-storage";
-import { useEffect } from "react";
 
 
 export default function Home() {
@@ -20,7 +18,7 @@ export default function Home() {
       <Services />
       <Pricing/>
       <About />
-      <ContactUs />
+      {/* <ContactUs /> */}
       <Footer/>
     </main>
   );
