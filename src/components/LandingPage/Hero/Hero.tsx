@@ -15,7 +15,7 @@ const Hero = () => {
         <h1>{ getLang === 'বাং'?'আপনার ব্যক্তিগত সময় উপভোগ করুন':"Enjoy your personal life"}</h1>
         <p>{ getLang === 'বাং'?'আপনার খাবার এবং থাকার দায়িত্ব আমাদের উপর ছেড়ে দিন':'We will take care of your food and accommodation'}</p>
               {/* <Button>Register Now</Button> */}
-              <Button>{getLang === 'বাং'?'নিবন্ধন করুন':"Register Now"}</Button>
+              <Button>{getLang === 'বাং'?'রেজিস্ট্রেশন করুন':"Register Now"}</Button>
 </div>
     </div>
   )
