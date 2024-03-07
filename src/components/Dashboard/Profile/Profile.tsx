@@ -1,14 +1,17 @@
+
 import Image from 'next/image';
 import Styles from './Profile.module.css';
 import profile_img from '@/assets/profile.png';
 
 const Profile = () => {
+
   return (
       <div>
           <div>
               <Image src={profile_img} alt='profile_img' width={50} />
               <div>
                   <p>Rahim Ullah</p>
+                  <p>Id : SB1b2</p>
                   <p>Basundara ltd</p>
                   <p>Dhaka,bangladesh</p>
               </div>

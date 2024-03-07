@@ -51,10 +51,10 @@ const Dashboard = () => {
         <Statics/>
         </Col>
         <Col xs={24} sm={12}>
-        <History/>
+        <Meals/>
         </Col>
         <Col xs={24} sm={12}>
-        <Meals/>
+        <History/>
         </Col>
         </Row>
     </div>
