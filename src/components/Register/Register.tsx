@@ -21,7 +21,7 @@ const Register = () => {
               </Col>
               <Col xs={24} md={12}>
                   <div className={Styles.form_container}>
-                      <h2 className={Styles.login_heading}>{ getLang == 'বাং' ?'লগইন করুন':'LOGIN'}</h2>
+                      <h2 className={Styles.login_heading}>{ getLang == 'বাং' ?'রেজিস্ট্রেশন করুন':"Register Now"}</h2>
                       <div >
                           <div className={Styles.input_container}>
                               <p>{ getLang == 'বাং' ?'ফোন নাম্বর':'Phone number'}</p>
