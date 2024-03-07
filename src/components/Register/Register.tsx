@@ -24,6 +24,10 @@ const Register = () => {
                       <h2 className={Styles.login_heading}>{ getLang == 'বাং' ?'রেজিস্ট্রেশন করুন':"Register Now"}</h2>
                       <div >
                           <div className={Styles.input_container}>
+                              <p>{ getLang == 'বাং' ?'নাম':'Name'}</p>
+                              <Input placeholder="John doe" />
+                          </div>
+                          <div className={Styles.input_container}>
                               <p>{ getLang == 'বাং' ?'ফোন নাম্বর':'Phone number'}</p>
                               <Input type='number' placeholder="+8801*********" />
                           </div>
