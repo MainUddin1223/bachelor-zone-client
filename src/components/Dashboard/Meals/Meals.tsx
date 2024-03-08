@@ -1,7 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react';
-import { Button, Divider, Radio, Table } from 'antd';
-import type { TableColumnsType } from 'antd';
+import { Button, DatePicker, Space, Table,Modal, InputNumber } from 'antd';
+import type { TableColumnsType,DatePickerProps  } from 'antd';
 
 import Styles from './Meals.module.css';
 
@@ -137,14 +137,33 @@ const data: DataType[] = [
 ];
 
 const Meals = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth > 576); 
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth > 576);
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
+    const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
+  const isMobile = screenSize < screenSize;
+  const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState('Content of the modal');
+
+    const showModal = () => {
+    setOpen(true);
+  };
+
+  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
+  console.log(dateString);
+};
+
+  const handleOk = () => {
+    setModalText('The modal will be closed after two seconds');
+    setConfirmLoading(true);
+    setTimeout(() => {
+      setOpen(false);
+      setConfirmLoading(false);
+    }, 2000);
+  };
+
+  const handleCancel = () => {
+    console.log('Clicked cancel button');
+    setOpen(false);
+  };
 
   return (
     <div>
@@ -152,18 +171,40 @@ const Meals = () => {
         <h4>Meals</h4>
         <p>Upcoming meals</p>
         <div>
-          <Button>Order Meal</Button>
+           <Modal
+        title="Order your Meals"
+        open={open}
+        onOk={handleOk}
+        confirmLoading={confirmLoading}
+        onCancel={handleCancel}
+      >
+            <div>
+              <DatePicker onChange={onChange} />
+              <div>
+                <p>Lunch</p>
+                 <InputNumber min={1} max={5} defaultValue={1} onChange={(value:any)=>console.log(value)} />
+              </div>
+              <div>
+                <p>Dinner</p>
+                <InputNumber min={1} max={5} defaultValue={1} onChange={(value:any)=>console.log(value)} />
+              </div>
+              <div>
+                <p>Tiffin</p>
+                <InputNumber min={1} max={5} defaultValue={1} onChange={(value:any)=>console.log(value)} />
+              </div>
+        </div>
+      </Modal>
           {isMobile ?
-            <Table
-              columns={columns}
-              dataSource={data}
-              pagination={false}
-            /> :
             <Table
               columns={mobileColumns}
               dataSource={mobileData}
               pagination={false}
-            />}
+            />:<Table
+              columns={columns}
+              dataSource={data}
+              pagination={false}
+            /> 
+            }
         </div>
       </div>
     </div>

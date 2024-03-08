@@ -84,17 +84,18 @@ const columns: TableColumnsType<DataType> = [
     dataIndex: 'date'
   },
   {
-    title: 'Lunch',
-    dataIndex: 'lunch',
+    title: 'Meals',
+    dataIndex: 'meals',
   },
-  {
-    title: 'Dinner',
-    dataIndex: 'dinner',
-  },
-  {
+    {
     title: 'Tiffin',
     dataIndex: 'tiffin',
   },
+  {
+    title: 'Status',
+    dataIndex: 'status',
+  },
+
   {
     title: 'Order Date',
     dataIndex: 'order_date',
@@ -137,33 +138,32 @@ const data: DataType[] = [
 ];
 
 const Meals = () => {
-  const [isMobile, setIsMobile] = useState(window.innerWidth > 576); 
-  useEffect(() => {
-    function handleResize() {
-      setIsMobile(window.innerWidth > 576);
-    }
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
-  }, []);
-
+  // const [isMobile, setIsMobile] = useState(window.innerWidth > 576);
+  // useEffect(() => {
+  //   function handleResize() {
+  //     setIsMobile(window.innerWidth > 576);
+  //   }
+  //   window.addEventListener('resize', handleResize);
+  //   return () => window.removeEventListener('resize', handleResize);
+  // }, []);
+  const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
+const isMobile = screenSize<screenSize
   return (
     <div>
       <div>
         <h4>Meal History</h4>
         <p>Your consumed meal details for January</p>
         <div>
-          <Button>Order Meal</Button>
           {isMobile ?
-            <Table
-              columns={columns}
-              dataSource={data}
-              pagination={false}
-            /> :
-            <Table
+               <Table
               columns={mobileColumns}
               dataSource={mobileData}
               pagination={false}
-            />}
+            />:<Table
+              columns={columns}
+              dataSource={data}
+              pagination={false}
+            /> }
         </div>
       </div>
     </div>

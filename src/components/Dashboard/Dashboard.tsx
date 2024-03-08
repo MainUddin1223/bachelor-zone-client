@@ -7,6 +7,7 @@ import Header from '../header/Header'
 import Footer from '../Footer/Footer'
 import History from './History/History'
 import Meals from './Meals/Meals'
+import Order from './Order/Order'
 
 
 const Dashboard = () => {
@@ -43,17 +44,17 @@ const Dashboard = () => {
                 প্রোফাইল পরিবর্তন করুন
               </Col>
           </Row> */}
-      <Row>
+      <Row gutter={[20,20]}>
         <Col xs={24} sm={12}>
         <Profile/>
         </Col>
         <Col xs={24} sm={12}>
         <Statics/>
         </Col>
-        <Col xs={24} sm={12}>
+        <Col xs={24}>
         <Meals/>
         </Col>
-        <Col xs={24} sm={12}>
+        <Col xs={24} >
         <History/>
         </Col>
         </Row>
