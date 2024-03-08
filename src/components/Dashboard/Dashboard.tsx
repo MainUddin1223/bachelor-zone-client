@@ -1,4 +1,4 @@
-import { Col, Row } from 'antd'
+import { Col, Flex, Row } from 'antd'
 import React from 'react'
 import Styles from './Dashboard.module.css'
 import Profile from './Profile/Profile'
@@ -45,11 +45,14 @@ const Dashboard = () => {
               </Col>
           </Row> */}
       <Row gutter={[20,20]}>
-        <Col xs={24} sm={12}>
-        <Profile/>
+          <Col xs={24}>
+            <div className={Styles.profile_container}>
+              <Profile />
+                <Statics />
+                <Order/>
+            </div>
         </Col>
         <Col xs={24} sm={12}>
-        <Statics/>
         </Col>
         <Col xs={24}>
         <Meals/>

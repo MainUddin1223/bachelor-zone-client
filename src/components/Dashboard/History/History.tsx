@@ -147,7 +147,7 @@ const Meals = () => {
   //   return () => window.removeEventListener('resize', handleResize);
   // }, []);
   const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
-const isMobile = screenSize<screenSize
+const isMobile = screenSize<577
   return (
     <div>
       <div>

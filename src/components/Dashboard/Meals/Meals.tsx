@@ -138,7 +138,7 @@ const data: DataType[] = [
 
 const Meals = () => {
     const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
-  const isMobile = screenSize < screenSize;
+  const isMobile = screenSize<577
   const [open, setOpen] = useState(false);
   const [confirmLoading, setConfirmLoading] = useState(false);
   const [modalText, setModalText] = useState('Content of the modal');

@@ -1,0 +1,22 @@
+.container {
+  width: 45%;
+  padding: 10px;
+  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+  height: 100%;
+}
+.profile_container {
+  display: flex;
+  align-items: center;
+}
+.profile_info_container {
+  padding-left: 15px;
+}
+.user_name {
+  font-size: 19px;
+}
+/* Smartphone */
+@media (max-width: 576px) {
+  .container {
+    width: 100%;
+  }
+}

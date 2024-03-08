@@ -2,23 +2,22 @@
 import Image from 'next/image';
 import Styles from './Profile.module.css';
 import profile_img from '@/assets/profile.png';
+import { Avatar } from 'antd';
 
 const Profile = () => {
 
   return (
-      <div>
-          <div>
-              <Image src={profile_img} alt='profile_img' width={50} />
+      <div className={Styles.container}>
+          <div className={Styles.profile_container}>
               <div>
-                  <p>Rahim Ullah</p>
+                  <Avatar shape="square" gap={5} size={110} icon={<Image src={profile_img} alt='profile_img' width={100} layout='responsive'/>} />
+              </div>
+              <div className={Styles.profile_info_container}>
+                  <p className={Styles.user_name}>Name : Rahim Ullah</p>
                   <p>Id : SB1b2</p>
                   <p>Basundara ltd</p>
                   <p>Dhaka,bangladesh</p>
               </div>
-          </div>
-          <div>
-              <h4>Balance : ৳ 1200</h4>
-              <h4>Dew : ৳ 00</h4>
           </div>
     </div>
   )
