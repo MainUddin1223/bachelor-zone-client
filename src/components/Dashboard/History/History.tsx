@@ -151,8 +151,8 @@ const isMobile = screenSize<577
   return (
     <div>
       <div>
-        <h4>Meal History</h4>
-        <p>Your consumed meal details for January</p>
+        <h3 className={Styles.history_header}>Meal History</h3>
+        <p className={Styles.history_info}>Your consumed meal details for January</p>
         <div>
           {isMobile ?
                <Table

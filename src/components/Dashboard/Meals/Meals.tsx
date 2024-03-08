@@ -139,61 +139,13 @@ const data: DataType[] = [
 const Meals = () => {
     const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
   const isMobile = screenSize<577
-  const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState('Content of the modal');
-
-    const showModal = () => {
-    setOpen(true);
-  };
-
-  const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-  console.log(dateString);
-};
-
-  const handleOk = () => {
-    setModalText('The modal will be closed after two seconds');
-    setConfirmLoading(true);
-    setTimeout(() => {
-      setOpen(false);
-      setConfirmLoading(false);
-    }, 2000);
-  };
-
-  const handleCancel = () => {
-    console.log('Clicked cancel button');
-    setOpen(false);
-  };
 
   return (
     <div>
       <div>
-        <h4>Meals</h4>
-        <p>Upcoming meals</p>
+        <h3 className={Styles.meals_header}>Meals</h3>
+        <p className={Styles.meals_info}>Your Upcoming meals. You can change meal quantity or cancel you meal before 12 hours.</p>
         <div>
-           <Modal
-        title="Order your Meals"
-        open={open}
-        onOk={handleOk}
-        confirmLoading={confirmLoading}
-        onCancel={handleCancel}
-      >
-            <div>
-              <DatePicker onChange={onChange} />
-              <div>
-                <p>Lunch</p>
-                 <InputNumber min={1} max={5} defaultValue={1} onChange={(value:any)=>console.log(value)} />
-              </div>
-              <div>
-                <p>Dinner</p>
-                <InputNumber min={1} max={5} defaultValue={1} onChange={(value:any)=>console.log(value)} />
-              </div>
-              <div>
-                <p>Tiffin</p>
-                <InputNumber min={1} max={5} defaultValue={1} onChange={(value:any)=>console.log(value)} />
-              </div>
-        </div>
-      </Modal>
           {isMobile ?
             <Table
               columns={mobileColumns}

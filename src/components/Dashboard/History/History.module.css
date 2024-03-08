@@ -1,0 +1,11 @@
+.history_header {
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px;
+}
+.history_info {
+  text-align: center;
+  font-size: 19px;
+  margin-bottom: 25px;
+  font-weight: 500;
+}

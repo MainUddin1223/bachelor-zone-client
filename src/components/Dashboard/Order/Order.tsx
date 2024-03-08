@@ -32,7 +32,8 @@ const Order = () => {
   };
   return (
       <div className={Styles.container}>
-          <h3>Order your meals</h3>
+          <h3 className={Styles.order_header}>Order your meals</h3>
+          <hr style={{margin:"10px 0"}}/>
                      <Modal
         title="Order your Meals"
         open={open}
@@ -41,23 +42,32 @@ const Order = () => {
         onCancel={handleCancel}>
       </Modal>
           <div>
-              <p>Select a date</p>
+              <div className={Styles.date_container}>
+                  <p>Select a date</p>
               <DatePicker onChange={onChange} defaultValue={dayjs(selectedDate)}/>
+              </div>
                <div className={Styles.lunch_container}>
-              <div>
+              <div className={Styles.lunch}>
                 <p>Lunch</p>
                  <InputNumber min={0} max={5} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
-              <div>
+             <div className={Styles.lunch}>
                 <p>Dinner</p>
                 <InputNumber min={0} max={5} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
-              <div>
-                <p>Tiffin</p>
+              <div className={Styles.lunch}>
+                <p>Tiffin for Lunch</p>
+                <InputNumber min={0} max={2} defaultValue={0} onChange={(value:any)=>console.log(value)} />
+              </div>
+              <div className={Styles.lunch}>
+                <p>Tiffin for Dinner</p>
                 <InputNumber min={0} max={2} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
               </div>
+              <div className={Styles.order_btn} >
+                  
               <Button type='primary' onClick={()=>setOpen(true)}>Order Meal</Button>
+              </div>
         </div>
     </div>
   )

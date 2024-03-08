@@ -11,6 +11,9 @@
 .profile_info_container {
   padding-left: 15px;
 }
+.profile_info_container p {
+  padding: 5px 0;
+}
 .user_name {
   font-size: 19px;
 }
