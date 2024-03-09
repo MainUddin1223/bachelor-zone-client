@@ -30,6 +30,7 @@ const mobileColumns: TableColumnsType<MobileDataType> = [
         <p>Lunch: {details?.lunch}</p>
         <p>Tiffin: {details?.tiffin}</p>
         <p>Order Date: {details?.order_date}</p>
+        <Button>Edit Meals</Button>
       </div>
     )
   }
@@ -99,6 +100,21 @@ const columns: TableColumnsType<DataType> = [
     title: 'Order Date',
     dataIndex: 'order_date',
   },
+  {
+    title: 'Action',
+    dataIndex:"action",
+    render: (_: any, record:DataType) => {
+
+      return (
+             <div>
+<Modal/>
+        <Button>Edit Meals</Button>
+      </div>
+      )
+    }
+
+    
+  },
 ];
 
 const data: DataType[] = [
@@ -138,7 +154,10 @@ const data: DataType[] = [
 
 const Meals = () => {
     const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
-  const isMobile = screenSize<577
+  const isMobile = screenSize < 577;
+        const [open, setOpen] = useState(false);
+  const [confirmLoading, setConfirmLoading] = useState(false);
+  const [modalText, setModalText] = useState('Content of the modal');
 
   return (
     <div>
