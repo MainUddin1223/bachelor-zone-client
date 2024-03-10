@@ -1,9 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { Button, DatePicker, Space, Table,Modal, InputNumber } from 'antd';
 import type { TableColumnsType,DatePickerProps  } from 'antd';
 
 import Styles from './Meals.module.css';
+import EditMeals from '@/components/EditMeals/EditMeals';
 
 interface DataType {
   key: React.Key;
@@ -79,50 +80,13 @@ const mobileData: MobileDataType[] = [
   },
 ];
 
-const columns: TableColumnsType<DataType> = [
-  {
-    title: 'date',
-    dataIndex: 'date'
-  },
-  {
-    title: 'Lunch',
-    dataIndex: 'lunch',
-  },
-  {
-    title: 'Dinner',
-    dataIndex: 'dinner',
-  },
-  {
-    title: 'Tiffin',
-    dataIndex: 'tiffin',
-  },
-  {
-    title: 'Order Date',
-    dataIndex: 'order_date',
-  },
-  {
-    title: 'Action',
-    dataIndex:"action",
-    render: (_: any, record:DataType) => {
-
-      return (
-             <div>
-<Modal/>
-        <Button>Edit Meals</Button>
-      </div>
-      )
-    }
-
-    
-  },
-];
 
 const data: DataType[] = [
   {
     key: 1,
     date: '2024-03-01',
     lunch: 1,
-    dinner: 1,
+    dinner: 3,
     tiffin: 2,
     order_date: '2024-02-28'
   },
@@ -155,9 +119,43 @@ const data: DataType[] = [
 const Meals = () => {
     const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
   const isMobile = screenSize < 577;
-        const [open, setOpen] = useState(false);
-  const [confirmLoading, setConfirmLoading] = useState(false);
-  const [modalText, setModalText] = useState('Content of the modal');
+
+  const columns: TableColumnsType<DataType> = [
+  {
+    title: 'date',
+    dataIndex: 'date'
+  },
+  {
+    title: 'Lunch',
+    dataIndex: 'lunch',
+  },
+  {
+    title: 'Dinner',
+    dataIndex: 'dinner',
+  },
+  {
+    title: 'Tiffin',
+    dataIndex: 'tiffin',
+  },
+  {
+    title: 'Order Date',
+    dataIndex: 'order_date',
+  },
+  {
+    title: 'Action',
+    dataIndex:"action",
+    render: (_: any, details:DataType) => {
+
+      return (
+             <div>
+            <EditMeals details={details} />
+      </div>
+      )
+    }
+
+    
+  },
+];
 
   return (
     <div>
