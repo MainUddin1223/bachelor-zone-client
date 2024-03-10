@@ -11,24 +11,7 @@ import { DataType, MobileDataType } from '@/type';
 
 
 
-const mobileColumns: TableColumnsType<MobileDataType> = [
-  {
-    title: "Details",
-    dataIndex: 'details',
-    render: (details) => (
-      <div>
-        <p>Date: {details?.date}</p>
-        <p>Dinner: {details?.dinner}</p>
-        <p>Lunch: {details?.lunch}</p>
-        <p>Lunch Tiffin: {details?.lunch_tiffin}</p>
-        <p>Dinner Tiffin: {details?.dinner_tiffin}</p>
-        <p>Order Date: {details?.order_date}</p>
-        <Button>Edit Meals</Button>
-        <Button>Cancel Meal</Button>
-      </div>
-    )
-  }
-];
+
 
 const mobileData: MobileDataType[] = [
   {
@@ -36,8 +19,8 @@ const mobileData: MobileDataType[] = [
     details: {
       date: '2024-03-01',
       lunch: 1,
-      dinner: 1,
-          lunch_tiffin: 2,
+      dinner: 3,
+      lunch_tiffin: 2,
     dinner_tiffin:2,
       order_date: '2024-02-28'
     }
@@ -46,7 +29,7 @@ const mobileData: MobileDataType[] = [
     key: 2,
     details: {
       date: '2024-03-01',
-      lunch: 1,
+      lunch: 2,
       dinner: 1,
           lunch_tiffin: 2,
     dinner_tiffin:2,
@@ -119,7 +102,7 @@ const data: DataType[] = [
 
 const Meals = () => {
     const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
-  const isMobile = screenSize < 577;
+  const isMobile = screenSize < 768;
 
   const columns: TableColumnsType<DataType> = [
   {
@@ -153,7 +136,7 @@ const Meals = () => {
 
       return (
              <div>
-            <EditMeals details={details} />
+          <EditMeals details={details} isMobile={false } />
       </div>
       )
     }
@@ -162,6 +145,25 @@ const Meals = () => {
   },
 ];
 
+  const mobileColumns: TableColumnsType<MobileDataType> = [
+  {
+    title: "Details",
+    dataIndex: 'details',
+    render: (details) => (
+      <div>
+        <p>Date: {details?.date}</p>
+        <p>Dinner: {details?.dinner}</p>
+        <p>Lunch: {details?.lunch}</p>
+        <p>Lunch Tiffin: {details?.lunch_tiffin}</p>
+        <p>Dinner Tiffin: {details?.dinner_tiffin}</p>
+        <p>Order Date: {details?.order_date}</p>
+                     <div>
+          <EditMeals details={details} isMobile={true } />
+      </div>
+      </div>
+    )
+  }
+];
   return (
     <div>
       <div>

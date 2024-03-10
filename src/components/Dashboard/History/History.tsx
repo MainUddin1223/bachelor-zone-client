@@ -138,16 +138,8 @@ const data: DataType[] = [
 ];
 
 const Meals = () => {
-  // const [isMobile, setIsMobile] = useState(window.innerWidth > 576);
-  // useEffect(() => {
-  //   function handleResize() {
-  //     setIsMobile(window.innerWidth > 576);
-  //   }
-  //   window.addEventListener('resize', handleResize);
-  //   return () => window.removeEventListener('resize', handleResize);
-  // }, []);
   const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
-const isMobile = screenSize<577
+  const isMobile = screenSize < 768;
   return (
     <div>
       <div>

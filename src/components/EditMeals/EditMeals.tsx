@@ -5,22 +5,22 @@ import dayjs from "dayjs"
 import { useState } from "react";
 import {
   Button,
+  Col,
   DatePicker,
   DatePickerProps,
   InputNumber,
-  Modal
+  Modal,
+  Row
 } from "antd"
 
 
-const EditMeals = ({ details }: { details:any ,}) => {
+const EditMeals = ({ details ,isMobile}: { details:any ,isMobile:boolean}) => {
   const [open,setOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [selectedDate, setSelectedDate] = useState(dayjs(Date.now()).format('YYYY-MM-DD'));
 
   const [updatedData, setUpdatedData] = useState({
     ...details
   })
-  console.log(updatedData)
 
 const handleOk = () => {
     setConfirmLoading(true);
@@ -63,23 +63,33 @@ const handleCancel = (details:any) => {
             }}
             />
               </div>
-               <div className={Styles.lunch_container}>
-              <div className={Styles.lunch}>
+          <div className={Styles.lunch_container}>
+            <Row gutter={[15,15]}>
+              <Col xs={12} md={6}>
+                <div className={Styles.lunch}>
                 <p>Lunch</p>
                  <InputNumber min={0} max={5} defaultValue={updatedData.lunch} onChange={(value:any)=>setUpdatedData({...updatedData,lunch:value})} value={updatedData.lunch}/>
               </div>
-             <div className={Styles.lunch}>
+              </Col>
+              <Col xs={12} md={6}>
+                 <div className={Styles.lunch}>
                 <p>Dinner</p>
                 <InputNumber min={0} max={5} defaultValue={updatedData.dinner} onChange={(value:any)=>setUpdatedData({...updatedData,dinner:value})} value={updatedData.dinner}/>
               </div>
-              <div className={Styles.lunch}>
+              </Col>
+              <Col xs={12} md={6}>
+                <div className={Styles.lunch}>
                 <p>Tiffin for Lunch</p>
                 <InputNumber min={0} max={2} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
-              <div className={Styles.lunch}>
+              </Col>
+              <Col xs={12} md={6}>
+                <div className={Styles.lunch}>
                 <p>Tiffin for Dinner</p>
                 <InputNumber min={0} max={2} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
+              </Col>
+            </Row>
               </div>
         </div>
       </Modal>

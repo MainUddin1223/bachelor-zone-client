@@ -1,5 +1,5 @@
 'use client'
-import { Button, DatePicker, DatePickerProps, InputNumber, Modal } from 'antd'
+import { Button, Col, DatePicker, DatePickerProps, InputNumber, Modal, Row } from 'antd'
 import Styles from './Order.module.css'
 import { useState } from 'react';
 import dayjs from 'dayjs';
@@ -46,23 +46,33 @@ const Order = () => {
                   <p>Select a date</p>
               <DatePicker onChange={onChange} defaultValue={dayjs(selectedDate)}/>
               </div>
-               <div className={Styles.lunch_container}>
-              <div className={Styles.lunch}>
+        <div className={Styles.lunch_container}>
+          <Row gutter={[15,15]}>
+            <Col xs={12} md={6}>
+                            <div className={Styles.lunch}>
                 <p>Lunch</p>
                  <InputNumber min={0} max={5} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
-             <div className={Styles.lunch}>
+            </Col>
+            <Col xs={12} md={6}>
+                           <div className={Styles.lunch}>
                 <p>Dinner</p>
                 <InputNumber min={0} max={5} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
-              <div className={Styles.lunch}>
+            </Col>
+            <Col xs={12} md={6}>
+                            <div className={Styles.lunch}>
                 <p>Tiffin for Lunch</p>
                 <InputNumber min={0} max={2} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
-              <div className={Styles.lunch}>
+            </Col>
+            <Col xs={12} md={6}>
+                            <div className={Styles.lunch}>
                 <p>Tiffin for Dinner</p>
                 <InputNumber min={0} max={2} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
+            </Col>
+          </Row>
               </div>
               <div className={Styles.order_btn} >
                   
