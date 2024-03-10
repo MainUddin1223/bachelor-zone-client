@@ -5,20 +5,11 @@ import type { TableColumnsType,DatePickerProps  } from 'antd';
 
 import Styles from './Meals.module.css';
 import EditMeals from '@/components/EditMeals/EditMeals';
+import { DataType, MobileDataType } from '@/type';
 
-interface DataType {
-  key: React.Key;
-  date: string;
-  dinner: number;
-  lunch: number;
-  tiffin: number;
-  order_date: string;
-}
 
-interface MobileDataType {
-  key: React.Key;
-  details: Partial<DataType>;
-}
+
+
 
 const mobileColumns: TableColumnsType<MobileDataType> = [
   {
@@ -29,9 +20,11 @@ const mobileColumns: TableColumnsType<MobileDataType> = [
         <p>Date: {details?.date}</p>
         <p>Dinner: {details?.dinner}</p>
         <p>Lunch: {details?.lunch}</p>
-        <p>Tiffin: {details?.tiffin}</p>
+        <p>Lunch Tiffin: {details?.lunch_tiffin}</p>
+        <p>Dinner Tiffin: {details?.dinner_tiffin}</p>
         <p>Order Date: {details?.order_date}</p>
         <Button>Edit Meals</Button>
+        <Button>Cancel Meal</Button>
       </div>
     )
   }
@@ -44,7 +37,8 @@ const mobileData: MobileDataType[] = [
       date: '2024-03-01',
       lunch: 1,
       dinner: 1,
-      tiffin: 2,
+          lunch_tiffin: 2,
+    dinner_tiffin:2,
       order_date: '2024-02-28'
     }
   },
@@ -54,7 +48,8 @@ const mobileData: MobileDataType[] = [
       date: '2024-03-01',
       lunch: 1,
       dinner: 1,
-      tiffin: 2,
+          lunch_tiffin: 2,
+    dinner_tiffin:2,
       order_date: '2024-02-28'
     }
   },
@@ -64,7 +59,8 @@ const mobileData: MobileDataType[] = [
       date: '2024-03-01',
       lunch: 1,
       dinner: 1,
-      tiffin: 2,
+          lunch_tiffin: 2,
+    dinner_tiffin:2,
       order_date: '2024-02-28'
     }
   },
@@ -74,7 +70,8 @@ const mobileData: MobileDataType[] = [
       date: '2024-03-01',
       lunch: 1,
       dinner: 1,
-      tiffin: 2,
+          lunch_tiffin: 2,
+    dinner_tiffin:2,
       order_date: '2024-02-28'
     }
   },
@@ -87,7 +84,8 @@ const data: DataType[] = [
     date: '2024-03-01',
     lunch: 1,
     dinner: 3,
-    tiffin: 2,
+       lunch_tiffin: 2,
+    dinner_tiffin:2,
     order_date: '2024-02-28'
   },
   {
@@ -95,7 +93,8 @@ const data: DataType[] = [
     date: '2024-03-01',
     lunch: 1,
     dinner: 1,
-    tiffin: 2,
+       lunch_tiffin: 2,
+    dinner_tiffin:2,
     order_date: '2024-02-28'
   },
   {
@@ -103,7 +102,8 @@ const data: DataType[] = [
     date: '2024-03-01',
     lunch: 1,
     dinner: 1,
-    tiffin: 2,
+    lunch_tiffin: 2,
+    dinner_tiffin:2,
     order_date: '2024-02-28'
   },
   {
@@ -111,7 +111,8 @@ const data: DataType[] = [
     date: '2024-03-01',
     lunch: 1,
     dinner: 1,
-    tiffin: 2,
+       lunch_tiffin: 2,
+    dinner_tiffin:2,
     order_date: '2024-02-28'
   },
 ];
@@ -134,8 +135,12 @@ const Meals = () => {
     dataIndex: 'dinner',
   },
   {
-    title: 'Tiffin',
-    dataIndex: 'tiffin',
+    title: 'Lunch Tiffin',
+    dataIndex: 'lunch_tiffin',
+  },
+  {
+    title: 'Dinner Tiffin',
+    dataIndex: 'dinner_tiffin',
   },
   {
     title: 'Order Date',

@@ -1,55 +1,47 @@
 'use client'
+
 import Styles from './EditMeals.module.css'
-import { Button, DatePicker, DatePickerProps, Drawer, InputNumber, Modal } from "antd"
 import dayjs from "dayjs"
 import { useState } from "react";
+import {
+  Button,
+  DatePicker,
+  DatePickerProps,
+  InputNumber,
+  Modal
+} from "antd"
 
 
 const EditMeals = ({ details }: { details:any ,}) => {
   const [open,setOpen] = useState(false)
-  const dummyData = {
-    key: 1,
-    dae: dayjs(Date.now()).format('YYYY-MM-DD'),
-    lunch: 0,
-    dinner: 0,
-    tiffin: 0,
-    order_date:dayjs(Date.now()).format('YYYY-MM-DD')
-  }
   const [confirmLoading, setConfirmLoading] = useState(false);
-  const [updatedData, setUpdatedData] = useState({
-    ...dummyData
-  })
-  const [modalText, setModalText] = useState('Content of the modal');
+  const [selectedDate, setSelectedDate] = useState(dayjs(Date.now()).format('YYYY-MM-DD'));
 
-    const handleOk = () => {
-    setModalText('The modal will be closed after two seconds');
+  const [updatedData, setUpdatedData] = useState({
+    ...details
+  })
+  console.log(updatedData)
+
+const handleOk = () => {
     setConfirmLoading(true);
     setTimeout(() => {
       setOpen(false);
       setConfirmLoading(false);
+      console.log(updatedData)
+      setUpdatedData(details)
     }, 2000);
   };
 
-  const handleUpdateMeal = (details: any) => {
-    console.log(details)
-  }
 
-  const handleCancel = (details:any) => {
-    console.log('Clicked cancel button',details);
+const handleCancel = (details:any) => {
+    setUpdatedData(details)
     setOpen(false);
   };
 
-  const [selectedDate, setSelectedDate] = useState(dayjs(Date.now()).format('YYYY-MM-DD'));
-         const onChange: DatePickerProps['onChange'] = (date, dateString) => {
-  setSelectedDate(dateString);
-  };
-
- const onClose = () => {
-    setOpen(false);
-  };
   return (
     <div>
       <Button onClick={()=>setOpen(true)}>Edit Meals</Button>
+      <Button danger>Cancel Meals</Button>
                 <Modal title={
         <h2>Edit your Meals { details.key}</h2>
            }
@@ -61,16 +53,24 @@ const EditMeals = ({ details }: { details:any ,}) => {
          <div>
               <div className={Styles.date_container}>
                   <p>Select a date</p>
-              <DatePicker onChange={onChange} defaultValue={dayjs(selectedDate)}/>
+            <DatePicker onChange={(value: any) => setUpdatedData({ ...updatedData, date: dayjs(value).format('YYYY-MM-DD') })}
+              defaultValue={dayjs(updatedData.date)}
+              allowClear={false}
+              value={dayjs(updatedData.date)}
+                   disabledDate={(current) => {
+            return dayjs().add(-1, 'days')  >= current ||
+                  dayjs().add(1, 'month')  <= current;
+            }}
+            />
               </div>
                <div className={Styles.lunch_container}>
               <div className={Styles.lunch}>
                 <p>Lunch</p>
-                 <InputNumber min={0} max={5} defaultValue={updatedData.lunch} onChange={(value:any)=>console.log(value)} />
+                 <InputNumber min={0} max={5} defaultValue={updatedData.lunch} onChange={(value:any)=>setUpdatedData({...updatedData,lunch:value})} value={updatedData.lunch}/>
               </div>
              <div className={Styles.lunch}>
                 <p>Dinner</p>
-                <InputNumber min={0} max={5} defaultValue={updatedData.dinner} onChange={(value:any)=>console.log(value)} />
+                <InputNumber min={0} max={5} defaultValue={updatedData.dinner} onChange={(value:any)=>setUpdatedData({...updatedData,dinner:value})} value={updatedData.dinner}/>
               </div>
               <div className={Styles.lunch}>
                 <p>Tiffin for Lunch</p>
