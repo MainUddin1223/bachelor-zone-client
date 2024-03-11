@@ -47,7 +47,7 @@ const Order = () => {
               <DatePicker onChange={onChange} defaultValue={dayjs(selectedDate)}/>
               </div>
         <div className={Styles.lunch_container}>
-          <Row gutter={[15,15]}>
+          <Row gutter={[15,15]} justify={'space-between'} >
             <Col xs={12} md={6}>
                             <div className={Styles.lunch}>
                 <p>Lunch</p>

@@ -6,6 +6,20 @@
 .container h4 {
   padding: 5px 0;
 }
+.info_container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.info {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  font-weight: 500;
+  cursor: pointer;
+  color: var(--primary-color);
+}
+
 /* Smartphone */
 @media (max-width: 576px) {
   .container {

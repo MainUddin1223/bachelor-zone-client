@@ -34,6 +34,8 @@ const Providers = ({ children }: { children: React.ReactNode }) => {
               // colorText: "rgb(224, 223, 223)",
               colorPrimary: "#5942cb",
               colorBgContainerDisabled: "gray",
+              colorBgSpotlight: 'white',
+              colorTextLightSolid:'black'
             },
           }}
         >
