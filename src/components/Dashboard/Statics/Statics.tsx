@@ -13,7 +13,17 @@ const Statics = () => {
       <div className={Styles.info_container}>
         
         <h4>{getLang === 'বাং' ?"ব্যলেন্স": "Balance"}: ৳ 1200</h4>
-               <Tooltip placement='bottomRight' title="Thanks for using antd. Have a nice day!" trigger="click" defaultOpen={false}>
+        <Tooltip placement='bottomRight' title={
+          <div className={Styles.expenses_info}>
+            <h3>{getLang === 'বাং' ? "যাবতীয় খরচ" : "Expenses Details"} </h3>
+            <div className={Styles.expenses}> 
+              <p>{getLang === 'বাং' ?"রুমভাড়া": "Rent"} : ৳ 1500 </p>
+              <p>{getLang === 'বাং' ?"খানা বিল : ৳ 50 / প্রতিবেলা " : "Meal Bill : ৳ 50 / Meal"} </p>
+              <p>{getLang === 'বাং' ?"বাবুর্চি বিল": "Cook Bill"} : ৳ 200 </p>
+              <p>{getLang === 'বাং' ?"পরিষ্করণ বিল": "Cleaning Bill"} : ৳ 100</p>
+            </div>
+        </div>
+        } trigger="click" defaultOpen={false}>
           <p className={Styles.info}><span>{getLang === 'বাং' ?"খরচ": "Cost"}</span> <span><InfoCircleOutlined /></span></p>
         </Tooltip>
   </div>
