@@ -14,7 +14,7 @@ import {
 } from "antd"
 
 
-const EditMeals = ({ details ,isMobile}: { details:any ,isMobile:boolean}) => {
+const EditMeals = ({ details ,isMobile,getLang}: { details:any ,isMobile:boolean,getLang:any}) => {
   const [open,setOpen] = useState(false)
   const [confirmLoading, setConfirmLoading] = useState(false);
 
@@ -40,10 +40,11 @@ const handleCancel = (details:any) => {
 
   return (
     <div>
-      <Button onClick={()=>setOpen(true)}>Edit Meals</Button>
-      <Button danger>Cancel Meals</Button>
+      <Button onClick={() => setOpen(true)}>
+      {getLang === 'বাং' ?"আর্ডার পরিবর্তন করুন": "Edit Meals"}</Button>
+      <Button danger>{getLang === 'বাং' ?"বাতিল করুন": "Cancel Meals"}</Button>
                 <Modal title={
-        <h2>Edit your Meals { details.key}</h2>
+        <h2> {getLang === 'বাং' ?"আর্ডার পরিবর্তন করুন": "Edit your Meals"}</h2>
            }
             open={open}
         onOk={handleOk}
@@ -52,7 +53,7 @@ const handleCancel = (details:any) => {
           >
          <div>
               <div className={Styles.date_container}>
-                  <p>Select a date</p>
+                  <p>{getLang === 'বাং' ?"তারিখ সিলেক্ট করুন": "Select a date"}</p>
             <DatePicker onChange={(value: any) => setUpdatedData({ ...updatedData, date: dayjs(value).format('YYYY-MM-DD') })}
               defaultValue={dayjs(updatedData.date)}
               allowClear={false}
@@ -67,25 +68,25 @@ const handleCancel = (details:any) => {
             <Row gutter={[15,15]}>
               <Col xs={12} md={6}>
                 <div className={Styles.lunch}>
-                <p>Lunch</p>
+                <p>{getLang === 'বাং' ?"দুপুরের খাবার": "Lunch"}</p>
                  <InputNumber min={0} max={5} defaultValue={updatedData.lunch} onChange={(value:any)=>setUpdatedData({...updatedData,lunch:value})} value={updatedData.lunch}/>
               </div>
               </Col>
               <Col xs={12} md={6}>
                  <div className={Styles.lunch}>
-                <p>Dinner</p>
+                <p>{getLang === 'বাং' ?"রাতের খাবার": "Dinner"}</p>
                 <InputNumber min={0} max={5} defaultValue={updatedData.dinner} onChange={(value:any)=>setUpdatedData({...updatedData,dinner:value})} value={updatedData.dinner}/>
               </div>
               </Col>
               <Col xs={12} md={6}>
                 <div className={Styles.lunch}>
-                <p>Tiffin for Lunch</p>
+                <p>{getLang === 'বাং' ?"দুপুরের টিফিন": "Tiffin for Lunch"} </p>
                 <InputNumber min={0} max={2} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
               </Col>
               <Col xs={12} md={6}>
                 <div className={Styles.lunch}>
-                <p>Tiffin for Dinner</p>
+                <p>{getLang === 'বাং' ?"রাতের টিফিন": "Tiffin for Dinner"}</p>
                 <InputNumber min={0} max={2} defaultValue={0} onChange={(value:any)=>console.log(value)} />
               </div>
               </Col>

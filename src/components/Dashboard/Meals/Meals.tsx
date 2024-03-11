@@ -1,17 +1,11 @@
 'use client'
-import { useCallback, useEffect, useState } from 'react';
-import { Button, DatePicker, Space, Table,Modal, InputNumber } from 'antd';
-import type { TableColumnsType,DatePickerProps  } from 'antd';
+import {  Table } from 'antd';
+import type { TableColumnsType  } from 'antd';
 
 import Styles from './Meals.module.css';
 import EditMeals from '@/components/EditMeals/EditMeals';
 import { DataType, MobileDataType } from '@/type';
-
-
-
-
-
-
+import { useAppSelector } from '@/redux/hooks';
 
 const mobileData: MobileDataType[] = [
   {
@@ -103,40 +97,48 @@ const data: DataType[] = [
 const Meals = () => {
     const screenSize = typeof window !== "undefined"? window.innerWidth : 1000
   const isMobile = screenSize < 768;
+        const { basicData } = useAppSelector((state) => state.basicSlice);
+   const getLang = basicData.lang;
 
   const columns: TableColumnsType<DataType> = [
   {
-    title: 'date',
+      title: <span>
+      {getLang === 'বাং' ?"তারিখ": "Date"}
+    </span>,
     dataIndex: 'date'
   },
   {
-    title: 'Lunch',
+    title: <span>
+      {getLang === 'বাং' ?"দুপুররে খাবার": "Lunch"}
+    </span>,
     dataIndex: 'lunch',
   },
   {
-    title: 'Dinner',
+    title: <span>
+      {getLang === 'বাং' ?"রাতের খাবার": "Dinner"}
+    </span>,
     dataIndex: 'dinner',
   },
   {
-    title: 'Lunch Tiffin',
+    title: <span>
+      {getLang === 'বাং' ?"দুপুরের টিফিন": "Lunch Tiffin"}
+    </span>,
     dataIndex: 'lunch_tiffin',
   },
   {
-    title: 'Dinner Tiffin',
+   title: <span>
+      {getLang === 'বাং' ?"রাতের টিফিন": "Dinner Tiffin"}
+    </span>,
     dataIndex: 'dinner_tiffin',
   },
   {
-    title: 'Order Date',
-    dataIndex: 'order_date',
-  },
-  {
-    title: 'Action',
+    title: '',
     dataIndex:"action",
     render: (_: any, details:DataType) => {
 
       return (
              <div>
-          <EditMeals details={details} isMobile={false } />
+          <EditMeals details={details} isMobile={false} getLang={ getLang} />
       </div>
       )
     }
@@ -151,14 +153,13 @@ const Meals = () => {
     dataIndex: 'details',
     render: (details) => (
       <div>
-        <p>Date: {details?.date}</p>
-        <p>Dinner: {details?.dinner}</p>
-        <p>Lunch: {details?.lunch}</p>
-        <p>Lunch Tiffin: {details?.lunch_tiffin}</p>
-        <p>Dinner Tiffin: {details?.dinner_tiffin}</p>
-        <p>Order Date: {details?.order_date}</p>
+        <p>{getLang === 'বাং' ?"তারিখ": "Date"}: {details?.date}</p>
+        <p>{getLang === 'বাং' ?"দুপুররে খাবার": "Lunch"}: {details?.dinner}</p>
+        <p>{getLang === 'বাং' ?"রাতের খাবার": "Dinner"}: {details?.lunch}</p>
+        <p>{getLang === 'বাং' ?"দুপুরের টিফিন": "Lunch Tiffin"}: {details?.lunch_tiffin}</p>
+        <p>{getLang === 'বাং' ?"রাতের টিফিন": "Dinner Tiffin"}: {details?.dinner_tiffin}</p>
                      <div>
-          <EditMeals details={details} isMobile={true } />
+          <EditMeals details={details} isMobile={true} getLang={ getLang} />
       </div>
       </div>
     )
@@ -167,8 +168,8 @@ const Meals = () => {
   return (
     <div>
       <div>
-        <h3 className={Styles.meals_header}>Meals</h3>
-        <p className={Styles.meals_info}>Your Upcoming meals. You can change meal quantity or cancel you meal before 12 hours.</p>
+        <h3 className={Styles.meals_header}>{getLang === 'বাং' ?"অর্ডরকৃত খাবার": "Upcoming Meals"}</h3>
+        <p className={Styles.meals_info}>{getLang === 'বাং' ?"আপনার অর্ডরকৃত খাবার. রাত 12.59 টার আগে আপনি খাবারের পরিমাণ পরিবর্তন করতে পারেন বা  আপনার খাবাররে অর্ডার বাতিল করতে পারেন।": "Your Upcoming meals. You can change meal quantity or cancel you meal before 12.59 PM."}</p>
         <div>
           {isMobile ?
             <Table
