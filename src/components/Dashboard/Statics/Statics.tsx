@@ -2,7 +2,7 @@
 
 import { InfoCircleOutlined } from '@ant-design/icons';
 import Styles from './Statics.module.css';
-import { Button, Tooltip } from 'antd';
+import {  Tooltip } from 'antd';
 import { useAppSelector } from '@/redux/hooks';
 
 const Statics = () => {
