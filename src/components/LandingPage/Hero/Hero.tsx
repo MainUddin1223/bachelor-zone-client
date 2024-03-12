@@ -1,24 +1,40 @@
-'use client'
-import hero from '@/assets/hero.png'
-import Image from 'next/image'
-import Styles from './Hero.module.css'
-import { Button } from 'antd'
+'use client';
+import hero from '@/assets/hero.png';
+import Image from 'next/image';
+import Styles from './Hero.module.css';
+import { Button } from 'antd';
 import { useAppSelector } from '@/redux/hooks';
 
 const Hero = () => {
-  const { basicData } = useAppSelector((state) => state.basicSlice);
-  const getLang = basicData.lang;
-  return (
-      <div className={Styles.container}>
-              <Image src={hero} height={100} width={100} alt='hero'  className={Styles.hero_image } />
-          <div className={Styles.hero_description}>
-        <h1>{ getLang === 'বাং'?'আপনার ব্যক্তিগত সময় উপভোগ করুন':"Enjoy your personal life"}</h1>
-        <p>{ getLang === 'বাং'?'আপনার খাবার এবং থাকার দায়িত্ব আমাদের উপর ছেড়ে দিন':'We will take care of your food and accommodation'}</p>
-              {/* <Button>Register Now</Button> */}
-              <Button>{getLang === 'বাং'?'রেজিস্ট্রেশন করুন':"Register Now"}</Button>
-</div>
-    </div>
-  )
-}
+	const { basicData } = useAppSelector((state) => state.basicSlice);
+	const getLang = basicData.lang;
+	return (
+		<div className={Styles.container}>
+			<Image
+				src={hero}
+				height={100}
+				width={100}
+				alt="hero"
+				className={Styles.hero_image}
+			/>
+			<div className={Styles.hero_description}>
+				<h1>
+					{getLang === 'বাং'
+						? 'আপনার ব্যক্তিগত সময় উপভোগ করুন'
+						: 'Enjoy your personal life'}
+				</h1>
+				<p>
+					{getLang === 'বাং'
+						? 'আপনার খাবার এবং থাকার দায়িত্ব আমাদের উপর ছেড়ে দিন'
+						: 'We will take care of your food and accommodation'}
+				</p>
+				{/* <Button>Register Now</Button> */}
+				<Button>
+					{getLang === 'বাং' ? 'রেজিস্ট্রেশন করুন' : 'Register Now'}
+				</Button>
+			</div>
+		</div>
+	);
+};
 
-export default Hero
+export default Hero;

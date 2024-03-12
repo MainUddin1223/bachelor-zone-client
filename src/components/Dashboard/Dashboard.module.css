@@ -1,40 +1,40 @@
 .container {
-  width: 80%;
-  margin: 20px auto;
+	width: 80%;
+	margin: 20px auto;
 }
 .profile_container {
-  display: flex;
-  gap: 20px;
-  flex-wrap: wrap;
-  justify-content: space-between;
+	display: flex;
+	gap: 20px;
+	flex-wrap: wrap;
+	justify-content: space-between;
 }
 /* Smartphone */
 @media (max-width: 576px) {
-  .container {
-    width: 95%;
-  }
+	.container {
+		width: 95%;
+	}
 }
 
 /* Tablet */
 @media (min-width: 577px) and (max-width: 767px) {
-  .container {
-    width: 95%;
-  }
+	.container {
+		width: 95%;
+	}
 }
 /* Tablet */
 @media (min-width: 768px) and (max-width: 991px) {
-  /* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
+	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
 }
 
 /* Small laptop/desktop */
 @media (min-width: 992px) and (max-width: 1199px) {
-  /* CSS rules for screens between 993px and 1200px wide (e.g., small laptops/desktops) */
+	/* CSS rules for screens between 993px and 1200px wide (e.g., small laptops/desktops) */
 }
 
 /* Large desktop */
 @media (min-width: 1200px) {
-  /* CSS rules for screens wider than 1200px (e.g., large desktops) */
-  .container {
-    width: 1000px;
-  }
+	/* CSS rules for screens wider than 1200px (e.g., large desktops) */
+	.container {
+		width: 1000px;
+	}
 }

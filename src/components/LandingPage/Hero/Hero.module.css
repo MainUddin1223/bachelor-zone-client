@@ -1,57 +1,57 @@
 .container {
-  height: 80vh;
-  margin: 0 auto;
-  position: relative;
+	height: 80vh;
+	margin: 0 auto;
+	position: relative;
 }
 .hero_image {
-  height: 100%;
-  width: 100%;
+	height: 100%;
+	width: 100%;
 }
 .hero_description {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
+	text-align: center;
 }
 .hero_description h1 {
-  margin: 15px;
+	margin: 15px;
 }
 .hero_description p {
-  padding: 10px;
+	padding: 10px;
 }
 
 /* Smartphone */
 @media (max-width: 576px) {
-  .hero_description {
-    top: 50%;
-    transform: translate(-50%, -50%);
-    width: 80%;
-  }
+	.hero_description {
+		top: 50%;
+		transform: translate(-50%, -50%);
+		width: 80%;
+	}
 }
 
 /* Tablet */
 @media (min-width: 577px) and (max-width: 767px) {
-  .hero_description {
-    top: 50%;
-    left: 40%;
-    transform: translate(-40%, -50%);
-  }
+	.hero_description {
+		top: 50%;
+		left: 40%;
+		transform: translate(-40%, -50%);
+	}
 }
 /* Tablet */
 @media (min-width: 768px) and (max-width: 991px) {
-  /* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
+	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
 }
 
 /* Small laptop/desktop */
 @media (min-width: 992px) and (max-width: 1199px) {
-  /* CSS rules for screens between 993px and 1200px wide (e.g., small laptops/desktops) */
+	/* CSS rules for screens between 993px and 1200px wide (e.g., small laptops/desktops) */
 }
 
 /* Large desktop */
 @media (min-width: 1200px) {
-  /* CSS rules for screens wider than 1200px (e.g., large desktops) */
-  .header_container {
-    width: 1000px;
-  }
+	/* CSS rules for screens wider than 1200px (e.g., large desktops) */
+	.header_container {
+		width: 1000px;
+	}
 }

@@ -1,25 +1,25 @@
 .container {
-  width: 45%;
-  padding: 10px;
-  box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
-  height: 100%;
+	width: 45%;
+	padding: 10px;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	height: 100%;
 }
 .profile_container {
-  display: flex;
-  align-items: center;
+	display: flex;
+	align-items: center;
 }
 .profile_info_container {
-  padding-left: 15px;
+	padding-left: 15px;
 }
 .profile_info_container p {
-  padding: 5px 0;
+	padding: 5px 0;
 }
 .user_name {
-  font-size: 19px;
+	font-size: 19px;
 }
 /* Smartphone */
 @media (max-width: 576px) {
-  .container {
-    width: 100%;
-  }
+	.container {
+		width: 100%;
+	}
 }
