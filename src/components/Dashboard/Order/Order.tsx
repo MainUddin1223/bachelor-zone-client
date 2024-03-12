@@ -45,7 +45,7 @@ const [confirmLoading, setConfirmLoading] = useState(false);
           <div>
               <div className={Styles.date_container}>
                   <p>{getLang === 'বাং' ?"তারিখ সিলেক্ট করুন": "Select a date"}</p>
-              <DatePicker onChange={onChange} defaultValue={dayjs(selectedDate)}/>
+              <DatePicker inputReadOnly onChange={onChange} defaultValue={dayjs(selectedDate)}/>
               </div>
         <div className={Styles.lunch_container}>
           <Row gutter={[15,15]} justify={'space-between'} >

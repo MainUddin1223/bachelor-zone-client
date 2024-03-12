@@ -8,6 +8,7 @@ import {
   Col,
   DatePicker,
   DatePickerProps,
+  Flex,
   InputNumber,
   Modal,
   Row
@@ -40,9 +41,11 @@ const handleCancel = (details:any) => {
 
   return (
     <div>
-      <Button onClick={() => setOpen(true)}>
+      <Flex gap={10}>
+        <Button onClick={() => setOpen(true)}>
       {getLang === 'বাং' ?"আর্ডার পরিবর্তন করুন": "Edit Meals"}</Button>
       <Button danger>{getLang === 'বাং' ?"বাতিল করুন": "Cancel Meals"}</Button>
+      </Flex>
                 <Modal title={
         <h2> {getLang === 'বাং' ?"আর্ডার পরিবর্তন করুন": "Edit your Meals"}</h2>
            }
@@ -57,6 +60,7 @@ const handleCancel = (details:any) => {
             <DatePicker onChange={(value: any) => setUpdatedData({ ...updatedData, date: dayjs(value).format('YYYY-MM-DD') })}
               defaultValue={dayjs(updatedData.date)}
               allowClear={false}
+              inputReadOnly
               value={dayjs(updatedData.date)}
                    disabledDate={(current) => {
             return dayjs().add(-1, 'days')  >= current ||

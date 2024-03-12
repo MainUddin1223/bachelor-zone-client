@@ -158,7 +158,7 @@ const Meals = () => {
         <p>{getLang === 'বাং' ?"রাতের খাবার": "Dinner"}: {details?.lunch}</p>
         <p>{getLang === 'বাং' ?"দুপুরের টিফিন": "Lunch Tiffin"}: {details?.lunch_tiffin}</p>
         <p>{getLang === 'বাং' ?"রাতের টিফিন": "Dinner Tiffin"}: {details?.dinner_tiffin}</p>
-                     <div>
+                     <div style={{marginTop:"10px"}}>
           <EditMeals details={details} isMobile={true} getLang={ getLang} />
       </div>
       </div>

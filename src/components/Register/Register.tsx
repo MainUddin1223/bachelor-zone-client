@@ -51,7 +51,7 @@ const Register = () => {
                           </div>
                       </div>
                       <div className={Styles.input_container}>  
-                      <p>{ getLang == 'বাং' ?'ব্যচেলর জোনে নতুন ?':'New to Bachelor Zone ?'} <Link href={'/login'}> { getLang == 'বাং' ?'লগইন':'Login'}</Link></p>
+                      <p>{ getLang == 'বাং' ?'ব্যচেলর জোনে একাউন্ট রয়েছে ?':'Already have an account ?'} <Link href={'/login'}> { getLang == 'বাং' ?'লগইন':'Login'}</Link></p>
                       <p className={Styles.contact_link}>{getLang === 'বাং'?'আমাদের সাথে যোগাযোগ করুন':"Contact with us"}</p>
                       </div>
                   </div>

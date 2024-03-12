@@ -1,13 +1,15 @@
 import { createSlice } from "@reduxjs/toolkit";
 type IBasicSlice = {
     basicData: {
-        lang: string | undefined
+        lang: string | undefined,
+        isLoggedIn: boolean,
     };
 };
 
 const initialState: IBasicSlice = {
     basicData: {
         lang: undefined,
+        isLoggedIn: false
     },
 };
 

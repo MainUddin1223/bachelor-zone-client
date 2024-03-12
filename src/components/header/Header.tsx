@@ -6,14 +6,15 @@ import { useEffect } from 'react';
 import Link from 'next/link';
 import { addBasicData } from '@/redux/slice/basicSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
-import { useRouter } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 
 const Header = () => {
   const { basicData } = useAppSelector((state) => state.basicSlice);
   const dispatch = useAppDispatch()
   const getSetLanguage = getFromLocalStorage('lang');
   const router = useRouter()
-  
+  const pathname = usePathname();
+  const showLoginBtn = pathname == '/login' || pathname == '/register' ? false :true
   useEffect(() => { 
       if (!getSetLanguage) {
         setToLocalStorage('lang', 'বাং')
@@ -23,7 +24,6 @@ const Header = () => {
     }
     }, [basicData.lang,getSetLanguage])
 
-  
     const handleChangeLanguage = (isChecked: boolean) => {
         if (isChecked) {
           setToLocalStorage('lang', 'বাং')
@@ -41,8 +41,8 @@ const Header = () => {
               <div> 
                   <h1 className={Styles.text_logo} onClick={()=>router.push('/')}>Bachelor Zone</h1>
               </div>
-                  <div className={Styles.login_container}>
-                      <Link href={'/login'} className={Styles.login_button}>Login</Link>
+                  {  <div className={Styles.login_container}>
+                      { showLoginBtn && <Link href={'/login'} className={Styles.login_button}>Login</Link>}
                       <ConfigProvider
   theme={{
     components: {
@@ -55,7 +55,7 @@ const Header = () => {
                           <Switch checkedChildren="বাং" unCheckedChildren="ENG" value={basicData.lang== 'eng'?false:true } onChange={(value)=>handleChangeLanguage(value)}/>
 </ConfigProvider>
 
-              </div>
+              </div>}
           </Flex>
           </div>
     </div>
