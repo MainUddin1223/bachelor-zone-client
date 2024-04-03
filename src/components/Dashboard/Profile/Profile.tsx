@@ -9,6 +9,7 @@ import { info } from 'console';
 
 const Profile = () => {
 	const { data, isLoading } = useGetInfoQuery(undefined);
+
 	if (isLoading) {
 		return <h1>Loading</h1>;
 	}

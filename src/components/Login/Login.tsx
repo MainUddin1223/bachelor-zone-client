@@ -40,7 +40,6 @@ const Login = () => {
 			}
 			setLoginData({ phone: '', password: '' });
 		} catch (error) {
-			console.log(error);
 			setIsLoading(false);
 			Modal.error({
 				content: 'Failed to login',

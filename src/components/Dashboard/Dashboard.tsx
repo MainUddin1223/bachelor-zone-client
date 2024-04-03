@@ -1,5 +1,6 @@
+'use client';
 import { Col, Flex, Row } from 'antd';
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import Styles from './Dashboard.module.css';
 import Profile from './Profile/Profile';
 import Header from '../header/Header';
@@ -7,6 +8,8 @@ import Footer from '../Footer/Footer';
 import History from './History/History';
 import Order from './Order/Order';
 import UpcomingMeals from './Meals/Meals';
+import { useGetInfoQuery } from '@/redux/api/userApi';
+import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
 
 const Dashboard = () => {
 	return (
