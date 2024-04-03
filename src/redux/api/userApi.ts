@@ -11,7 +11,15 @@ const userApi = baseApi.injectEndpoints({
 			}),
 			providesTags: ['user'],
 		}),
+		orderMeal: build.mutation({
+			query: (data) => ({
+				url: `${userUrl}/order`,
+				method: 'POST',
+				data,
+			}),
+			invalidatesTags: ['user'],
+		}),
 	}),
 });
 
-export const { useGetInfoQuery } = userApi;
+export const { useGetInfoQuery, useOrderMealMutation } = userApi;
