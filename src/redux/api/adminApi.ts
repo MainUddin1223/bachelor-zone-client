@@ -25,7 +25,7 @@ const adminApi = baseApi.injectEndpoints({
 				url: `${adminUrl}/questions`,
 				method: 'GET',
 			}),
-			providesTags: ['performer', 'admin'],
+			providesTags: ['admin'],
 		}),
 		getStatics: build.query({
 			query: () => ({

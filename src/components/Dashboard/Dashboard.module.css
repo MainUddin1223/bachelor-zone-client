@@ -2,12 +2,12 @@
 	width: 80%;
 	margin: 20px auto;
 }
-.profile_container {
+/* .profile_container {
 	display: flex;
 	gap: 20px;
 	flex-wrap: wrap;
 	justify-content: space-between;
-}
+} */
 /* Smartphone */
 @media (max-width: 576px) {
 	.container {

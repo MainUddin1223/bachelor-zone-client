@@ -3,15 +3,7 @@
 import Styles from './EditMeals.module.css';
 import dayjs from 'dayjs';
 import { useState } from 'react';
-import {
-	Button,
-	Col,
-	DatePicker,
-	Flex,
-	InputNumber,
-	Modal,
-	Row,
-} from 'antd';
+import { Button, Col, DatePicker, Flex, InputNumber, Modal, Row } from 'antd';
 
 const EditMeals = ({
 	details,

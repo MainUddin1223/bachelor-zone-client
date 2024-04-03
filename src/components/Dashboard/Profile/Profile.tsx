@@ -1,35 +1,54 @@
+'use client';
 import Image from 'next/image';
 import Styles from './Profile.module.css';
 import profile_img from '@/assets/profile.png';
-import { Avatar } from 'antd';
+import { Avatar, Col, Row } from 'antd';
+import { useGetInfoQuery } from '@/redux/api/userApi';
+import Statics from '../Statics/Statics';
+import { info } from 'console';
 
 const Profile = () => {
+	const { data, isLoading } = useGetInfoQuery(undefined);
+	console.log(data);
+	if (isLoading) {
+		return <h1>Loading</h1>;
+	}
 	return (
-		<div className={Styles.container}>
-			<div className={Styles.profile_container}>
-				<div>
-					<Avatar
-						shape="square"
-						gap={5}
-						size={110}
-						icon={
-							<Image
-								src={profile_img}
-								alt="profile_img"
-								width={100}
-								layout="responsive"
+		<Row gutter={[20, 20]}>
+			<Col md={12} xs={24}>
+				<div className={Styles.container}>
+					<div className={Styles.profile_container}>
+						<div>
+							<Avatar
+								shape="square"
+								gap={5}
+								size={110}
+								icon={
+									<Image
+										src={profile_img}
+										alt="profile_img"
+										width={100}
+										layout="responsive"
+									/>
+								}
 							/>
-						}
-					/>
+						</div>
+						<div className={Styles.profile_info_container}>
+							<p className={Styles.user_name}>Name : {data.name}</p>
+							<h4>Balance : ৳ {data?.balance}</h4>
+							<p>Id : {data.virtual_id}</p>
+							<p>Phone : {data.phone}</p>
+							<p>Address: {data.address}</p>
+						</div>
+					</div>
 				</div>
-				<div className={Styles.profile_info_container}>
-					<p className={Styles.user_name}>Name : Rahim Ullah</p>
-					<p>Id : SB1b2</p>
-					<p>Basundara ltd</p>
-					<p>Dhaka,bangladesh</p>
+			</Col>
+			<Col md={12} xs={24}>
+				<div className={Styles.container}>
+					<Statics info={data} />
 				</div>
-			</div>
-		</div>
+			</Col>
+		</Row>
 	);
 };
 
