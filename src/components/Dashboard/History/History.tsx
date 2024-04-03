@@ -4,6 +4,7 @@ import type { DatePickerProps, TableColumnsType } from 'antd';
 
 import Styles from './History.module.css';
 import { useAppSelector } from '@/redux/hooks';
+import { useGetOrderHistoryQuery } from '@/redux/api/userApi';
 
 interface DataType {
 	key: React.Key;
@@ -79,11 +80,12 @@ const data: DataType[] = [
 	},
 ];
 
-const Meals = () => {
+const History = () => {
 	const screenSize = typeof window !== 'undefined' ? window.innerWidth : 1000;
 	const isMobile = screenSize < 768;
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
+	const { data, isLoading } = useGetOrderHistoryQuery(undefined);
 
 	const columns: TableColumnsType<DataType> = [
 		{
@@ -167,4 +169,4 @@ const Meals = () => {
 	);
 };
 
-export default Meals;
+export default History;

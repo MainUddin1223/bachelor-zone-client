@@ -11,6 +11,20 @@ const userApi = baseApi.injectEndpoints({
 			}),
 			providesTags: ['user'],
 		}),
+		getUpcomingOrders: build.query({
+			query: () => ({
+				url: `${userUrl}/order`,
+				method: 'GET',
+			}),
+			providesTags: ['user'],
+		}),
+		getOrderHistory: build.query({
+			query: () => ({
+				url: `${userUrl}/order-history`,
+				method: 'GET',
+			}),
+			providesTags: ['user'],
+		}),
 		orderMeal: build.mutation({
 			query: (data) => ({
 				url: `${userUrl}/order`,
@@ -22,4 +36,9 @@ const userApi = baseApi.injectEndpoints({
 	}),
 });
 
-export const { useGetInfoQuery, useOrderMealMutation } = userApi;
+export const {
+	useGetInfoQuery,
+	useOrderMealMutation,
+	useGetOrderHistoryQuery,
+	useGetUpcomingOrdersQuery,
+} = userApi;

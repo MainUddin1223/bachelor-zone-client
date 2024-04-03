@@ -2,12 +2,11 @@ import { Col, Flex, Row } from 'antd';
 import React from 'react';
 import Styles from './Dashboard.module.css';
 import Profile from './Profile/Profile';
-import Statics from './Statics/Statics';
 import Header from '../header/Header';
 import Footer from '../Footer/Footer';
 import History from './History/History';
-import Meals from './Meals/Meals';
 import Order from './Order/Order';
+import UpcomingMeals from './Meals/Meals';
 
 const Dashboard = () => {
 	return (
@@ -25,11 +24,11 @@ const Dashboard = () => {
 					</Col>
 					<Col xs={24} sm={12}></Col>
 					<Col xs={24}>
-						<Meals />
+						<UpcomingMeals />
 					</Col>
-					<Col xs={24}>
+					{/* <Col xs={24}>
 						<History />
-					</Col>
+					</Col> */}
 				</Row>
 			</div>
 			<Footer />
