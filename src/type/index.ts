@@ -1,5 +1,6 @@
 export interface DataType {
 	key: React.Key;
+	id: number;
 	delivery_date: string;
 	status: string;
 }

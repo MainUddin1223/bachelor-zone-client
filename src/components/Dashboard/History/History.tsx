@@ -5,80 +5,8 @@ import type { DatePickerProps, TableColumnsType } from 'antd';
 import Styles from './History.module.css';
 import { useAppSelector } from '@/redux/hooks';
 import { useGetOrderHistoryQuery } from '@/redux/api/userApi';
-
-interface DataType {
-	key: React.Key;
-	date: string;
-	lunch: number;
-	dinner: number;
-	lunch_tiffin: number;
-	dinner_tiffin: number;
-	status: 'pending' | 'received';
-}
-
-interface MobileDataType {
-	key: React.Key;
-	details: Partial<DataType>;
-}
-
-const mobileData: MobileDataType[] = [
-	{
-		key: 1,
-		details: {
-			date: '2024-03-01',
-			lunch: 1,
-			dinner: 2,
-			lunch_tiffin: 1,
-			dinner_tiffin: 1,
-			status: 'received',
-		},
-	},
-	{
-		key: 2,
-		details: {
-			date: '2024-03-01',
-			lunch: 1,
-			dinner: 2,
-			lunch_tiffin: 1,
-			dinner_tiffin: 1,
-			status: 'received',
-		},
-	},
-	{
-		key: 3,
-		details: {
-			date: '2024-03-01',
-			lunch: 1,
-			dinner: 2,
-			lunch_tiffin: 1,
-			dinner_tiffin: 1,
-			status: 'received',
-		},
-	},
-	{
-		key: 4,
-		details: {
-			date: '2024-03-01',
-			lunch: 1,
-			dinner: 2,
-			lunch_tiffin: 1,
-			dinner_tiffin: 1,
-			status: 'received',
-		},
-	},
-];
-
-const data: DataType[] = [
-	{
-		key: 1,
-		date: '2024-03-01',
-		lunch: 1,
-		dinner: 2,
-		lunch_tiffin: 1,
-		dinner_tiffin: 1,
-		status: 'received',
-	},
-];
+import dayjs from 'dayjs';
+import { DataType } from '@/type';
 
 const History = () => {
 	const screenSize = typeof window !== 'undefined' ? window.innerWidth : 1000;
@@ -86,63 +14,65 @@ const History = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
 	const { data, isLoading } = useGetOrderHistoryQuery(undefined);
-
+	if (isLoading) return <h1>Loading</h1>;
+	console.log(data.meta);
 	const columns: TableColumnsType<DataType> = [
 		{
 			title: <span>{getLang === 'বাং' ? 'তারিখ' : 'Date'}</span>,
-			dataIndex: 'date',
+			dataIndex: 'delivery_date',
+			render: (data) => {
+				const date = data.split('T')[0];
+				return <h4>{date}</h4>;
+			},
 		},
 		{
-			title: <span>{getLang === 'বাং' ? 'দুপুররে খাবার' : 'Lunch'}</span>,
-			dataIndex: 'lunch',
+			title: <span>{getLang === 'বাং' ? 'বার' : 'Day'}</span>,
+			dataIndex: 'delivery_date',
+			render: (data) => {
+				const date = data.split('T')[0];
+				const dayName = dayjs(date).format('dddd');
+				return <h4>{dayName}</h4>;
+			},
 		},
 		{
-			title: <span>{getLang === 'বাং' ? 'রাতের খাবার' : 'Dinner'}</span>,
-			dataIndex: 'dinner',
-		},
-		{
-			title: (
-				<span>{getLang === 'বাং' ? 'দুপুরের টিফিন' : 'Lunch Tiffin'}</span>
-			),
-			dataIndex: 'lunch_tiffin',
-		},
-		{
-			title: <span>{getLang === 'বাং' ? 'রাতের টিফিন' : 'Dinner Tiffin'}</span>,
-			dataIndex: 'dinner_tiffin',
-		},
-		{
-			title: <span>{getLang === 'বাং' ? 'হাল' : 'Status'}</span>,
+			title: <span>{getLang === 'বাং' ? 'স্ট্যাটাস' : 'Status'}</span>,
 			dataIndex: 'status',
+			render: (data) => (
+				<span style={{ textTransform: 'capitalize', fontWeight: '500' }}>
+					{data == 'pending' ? (
+						<p style={{ color: 'green' }}>{data}</p>
+					) : (
+						<p style={{ color: 'red' }}>{data}</p>
+					)}
+				</span>
+			),
 		},
 	];
-	const mobileColumns: TableColumnsType<MobileDataType> = [
+
+	const mobileColumns: TableColumnsType<DataType> = [
 		{
-			title: <>{getLang === 'বাং' ? 'বিস্তারিত' : 'Details'}</>,
-			dataIndex: 'details',
-			render: (details) => (
-				<div>
-					<p>
-						{getLang === 'বাং' ? 'তারিখ' : 'Date'}: {details?.date}
-					</p>
-					<p>
-						{getLang === 'বাং' ? 'দুপুররে খাবার' : 'Lunch'}: {details?.dinner}
-					</p>
-					<p>
-						{getLang === 'বাং' ? 'রাতের খাবার' : 'Dinner'}: {details?.lunch}
-					</p>
-					<p>
-						{getLang === 'বাং' ? 'দুপুরের টিফিন' : 'Lunch Tiffin'}:{' '}
-						{details?.lunch_tiffin}
-					</p>
-					<p>
-						{getLang === 'বাং' ? 'রাতের টিফিন' : 'Dinner Tiffin'}:{' '}
-						{details?.dinner_tiffin}
-					</p>
-					<p>
-						{getLang === 'বাং' ? 'হাল' : 'Status'}: {details?.dinner_tiffin}
-					</p>
-				</div>
-			),
+			title: '',
+			dataIndex: '',
+			render: (_: any, details: DataType) => {
+				const date = details.delivery_date.split('T')[0];
+				return (
+					<div>
+						<h3>
+							{getLang === 'বাং' ? 'তারিখ' : 'Date'} {date}
+						</h3>
+						<h3 style={{ display: 'flex', gap: '5px' }}>
+							{getLang === 'বাং' ? 'স্ট্যাটাস' : 'Status'} :{' '}
+							<span style={{ textTransform: 'capitalize', fontWeight: '500' }}>
+								{data == 'pending' ? (
+									<p style={{ color: 'green' }}>{details.status}</p>
+								) : (
+									<p style={{ color: 'red' }}>{details.status}</p>
+								)}
+							</span>
+						</h3>
+					</div>
+				);
+			},
 		},
 	];
 	return (
@@ -158,11 +88,12 @@ const History = () => {
 						: 'Your consumed meal details for last 30 days'}
 				</p>
 				<div>
-					{isMobile ? (
-						<Table columns={mobileColumns} dataSource={mobileData} />
-					) : (
-						<Table columns={columns} dataSource={data} />
-					)}
+					<Table
+						style={{ textAlign: 'center' }}
+						columns={isMobile ? mobileColumns : columns}
+						dataSource={Array.isArray(data.data) ? data.data : []}
+						pagination={false}
+					/>
 				</div>
 			</div>
 		</div>

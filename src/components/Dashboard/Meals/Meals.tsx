@@ -1,21 +1,54 @@
 'use client';
-import { Button, Table } from 'antd';
+import { Button, Modal, Table, message } from 'antd';
 import type { TableColumnsType } from 'antd';
 
 import Styles from './Meals.module.css';
-import EditMeals from '@/components/EditMeals/EditMeals';
-import { DataType, MobileDataType } from '@/type';
+import { DataType } from '@/type';
 import { useAppSelector } from '@/redux/hooks';
-import { useGetUpcomingOrdersQuery } from '@/redux/api/userApi';
+import {
+	useCancelOrderMutation,
+	useConfirmOrderMutation,
+	useGetUpcomingOrdersQuery,
+} from '@/redux/api/userApi';
 import dayjs from 'dayjs';
+import { useState } from 'react';
 
 const UpcomingMeals = () => {
+	const [open, setOpen] = useState(false);
+	const [confirmLoading, setConfirmLoading] = useState(false);
+	const [orderDate, setOrderDate] = useState('');
+	const [action, setAction] = useState('');
+	const [orderId, setOrderId] = useState(0);
 	const screenSize = typeof window !== 'undefined' ? window.innerWidth : 1000;
 	const isMobile = screenSize < 768;
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
+	const orderAgainBtn = getLang === 'বাং' ? 'আবার অর্ডার করুন' : 'Re-Order';
+	const cancelOrderBtn = getLang === 'বাং' ? 'বাতিল করুন' : 'Cancel';
 	const { data, isLoading } = useGetUpcomingOrdersQuery(undefined);
+	const [confirmOrder] = useConfirmOrderMutation();
+	const [cancelOrder] = useCancelOrderMutation();
 	if (isLoading) return <h1>Loading</h1>;
+
+	const handleOk = async () => {
+		setConfirmLoading(true);
+		const result: any =
+			action === 'cancel'
+				? await cancelOrder(orderId)
+				: await confirmOrder(orderId);
+		setConfirmLoading(false);
+		setOpen(false);
+		if (result.data.success) {
+			message.success(result.data.message);
+		} else {
+			message.error(result.data.message);
+		}
+	};
+
+	const handleCancel = () => {
+		setOpen(false);
+	};
+
 	const columns: TableColumnsType<DataType> = [
 		{
 			title: <span>{getLang === 'বাং' ? 'তারিখ' : 'Date'}</span>,
@@ -37,19 +70,46 @@ const UpcomingMeals = () => {
 		{
 			title: <span>{getLang === 'বাং' ? 'স্ট্যাটাস' : 'Status'}</span>,
 			dataIndex: 'status',
+			render: (data) => (
+				<span style={{ textTransform: 'capitalize', fontWeight: '500' }}>
+					{data == 'pending' ? (
+						<p style={{ color: 'green' }}>{data}</p>
+					) : (
+						<p style={{ color: 'red' }}>{data}</p>
+					)}
+				</span>
+			),
 		},
 		{
-			title: <span>{getLang === 'বাং' ? 'স্ট্যাটাস' : 'Status'}</span>,
+			title: '',
 			dataIndex: '',
 			render: (_: any, details: DataType) => {
-				const orderAgain = 'আবার অর্ডার করুন';
-				const cancelOrder = 'বাতিল করুন';
+				const date = details.delivery_date.split('T')[0];
 				return (
 					<>
 						{details.status == 'canceled' ? (
-							<Button>{orderAgain}</Button>
+							<Button
+								onClick={() => {
+									setOrderDate(date);
+									setOpen(true);
+									setAction('confirm');
+									setOrderId(details.id);
+								}}
+							>
+								{orderAgainBtn}
+							</Button>
 						) : (
-							<Button danger>{cancelOrder}</Button>
+							<Button
+								danger
+								onClick={() => {
+									setOrderDate(date);
+									setOpen(true);
+									setAction('cancel');
+									setOrderId(details.id);
+								}}
+							>
+								{orderAgainBtn}
+							</Button>
 						)}
 					</>
 				);
@@ -62,23 +122,51 @@ const UpcomingMeals = () => {
 			title: '',
 			dataIndex: '',
 			render: (_: any, details: DataType) => {
-				console.log(details);
+				const date = details.delivery_date.split('T')[0];
 				return (
 					<div>
 						<h3>
-							{getLang === 'বাং' ? 'তারিখ' : 'Date'} {details.delivery_date}
+							{getLang === 'বাং' ? 'তারিখ' : 'Date'} : {date}
 						</h3>
-						<h3>
-							{getLang === 'বাং' ? 'স্ট্যাটাস' : 'Status'} {details.status}
+						<h3 style={{ display: 'flex', gap: '5px' }}>
+							{getLang === 'বাং' ? 'স্ট্যাটাস' : 'Status'} :{' '}
+							<span style={{ textTransform: 'capitalize' }}>
+								{details.status == 'pending' ? (
+									<p style={{ color: 'green' }}>{details.status}</p>
+								) : (
+									<p style={{ color: 'red' }}>{details.status}</p>
+								)}
+							</span>
 						</h3>
 
-						<Button danger>
+						<>
 							{details.status == 'canceled' ? (
-								<>{getLang === 'বাং' ? 'আবার অর্ডার করুন' : 'Order again'}</>
+								<Button
+									style={{ marginTop: '15px' }}
+									onClick={() => {
+										setOrderDate(date);
+										setOpen(true);
+										setAction('confirm');
+										setOrderId(details.id);
+									}}
+								>
+									{orderAgainBtn}
+								</Button>
 							) : (
-								<>{getLang === 'বাং' ? 'বাতিল করুন' : 'Cancel order'}</>
+								<Button
+									style={{ marginTop: '15px' }}
+									danger
+									onClick={() => {
+										setOrderDate(date);
+										setOpen(true);
+										setAction('cancel');
+										setOrderId(details.id);
+									}}
+								>
+									{cancelOrderBtn}
+								</Button>
 							)}
-						</Button>
+						</>
 					</div>
 				);
 			},
@@ -87,14 +175,29 @@ const UpcomingMeals = () => {
 
 	return (
 		<div>
+			<Modal
+				title={
+					action == 'cancel'
+						? getLang === 'বাং'
+							? `${orderDate} তারিখের অর্ডার বাতিল নিশ্চিত করুন`
+							: `Confirm cancel order of ${orderDate}`
+						: getLang === 'বাং'
+							? `${orderDate} তারিখের অর্ডার পুনরায় নিশ্চিত করুন`
+							: `Confirm order of ${orderDate} again`
+				}
+				open={open}
+				onOk={handleOk}
+				confirmLoading={confirmLoading}
+				onCancel={handleCancel}
+			></Modal>
 			<div>
 				<h3 className={Styles.meals_header}>
 					{getLang === 'বাং' ? 'অর্ডরকৃত খাবার' : 'Upcoming Meals'}
 				</h3>
 				<p className={Styles.meals_info}>
 					{getLang === 'বাং'
-						? 'আপনার অর্ডরকৃত খাবার. রাত 12.59 টার আগে আপনি খাবারের পরিমাণ পরিবর্তন করতে পারেন বা  আপনার খাবাররে অর্ডার বাতিল করতে পারেন।'
-						: 'Your Upcoming meals. You can change meal quantity or cancel you meal before 12.59 PM.'}
+						? 'আপনার আজকের অর্ডরকৃত খাবার ভোর 6:30 টার আগে  খাবারের অর্ডার বাতিল বা পুনরায় অর্ডার করতে পারেন এবং বাকী অর্ডার যেকোন সময় বাতিল করতে পারবেন'
+						: `You can reconfirm or cancel today's meal before 6:30 AM and you can update rest order anytime`}
 				</p>
 				<div>
 					<Table

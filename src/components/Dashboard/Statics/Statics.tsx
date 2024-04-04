@@ -23,8 +23,8 @@ const Statics = ({ info }: { info: any }) => {
 							<div className={Styles.expenses}>
 								<p>
 									{getLang === 'বাং'
-										? `খানা বিল : ৳ ${costing.mealCost} / প্রতিবেলা`
-										: `Meal cost : ৳ ${costing.mealCost} / Meal`}{' '}
+										? `খাবার বিল : ৳ ${costing.mealCost}`
+										: `Meal cost : ৳ ${costing.mealCost}`}{' '}
 								</p>
 								<p>
 									{getLang === 'বাং' ? 'ডেলিভারি ফি' : 'Delivery Fee'} : ৳{' '}

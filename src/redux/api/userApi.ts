@@ -33,6 +33,20 @@ const userApi = baseApi.injectEndpoints({
 			}),
 			invalidatesTags: ['user'],
 		}),
+		cancelOrder: build.mutation({
+			query: (id) => ({
+				url: `${userUrl}/order/${id}`,
+				method: 'POST',
+			}),
+			invalidatesTags: ['user'],
+		}),
+		confirmOrder: build.mutation({
+			query: (id) => ({
+				url: `${userUrl}/order/${id}`,
+				method: 'PATCH',
+			}),
+			invalidatesTags: ['user'],
+		}),
 	}),
 });
 
@@ -41,4 +55,6 @@ export const {
 	useOrderMealMutation,
 	useGetOrderHistoryQuery,
 	useGetUpcomingOrdersQuery,
+	useCancelOrderMutation,
+	useConfirmOrderMutation,
 } = userApi;

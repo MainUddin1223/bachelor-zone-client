@@ -29,9 +29,9 @@ const Dashboard = () => {
 					<Col xs={24}>
 						<UpcomingMeals />
 					</Col>
-					{/* <Col xs={24}>
+					<Col xs={24}>
 						<History />
-					</Col> */}
+					</Col>
 				</Row>
 			</div>
 			<Footer />
