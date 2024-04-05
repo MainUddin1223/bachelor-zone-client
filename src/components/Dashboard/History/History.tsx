@@ -14,8 +14,12 @@ const History = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
 	const { data, isLoading } = useGetOrderHistoryQuery(undefined);
-	if (isLoading) return <h1>Loading</h1>;
-	console.log(data.meta);
+	if (isLoading) return <></>;
+	const config = {
+		current: data.meta?.currentPage,
+		pageSize: data.meta.size,
+		total: data.meta.totalPage,
+	};
 	const columns: TableColumnsType<DataType> = [
 		{
 			title: <span>{getLang === 'বাং' ? 'তারিখ' : 'Date'}</span>,
@@ -39,10 +43,12 @@ const History = () => {
 			dataIndex: 'status',
 			render: (data) => (
 				<span style={{ textTransform: 'capitalize', fontWeight: '500' }}>
-					{data == 'pending' ? (
-						<p style={{ color: 'green' }}>{data}</p>
+					{data == 'received' ? (
+						<p style={{ color: 'green' }}>Received</p>
 					) : (
-						<p style={{ color: 'red' }}>{data}</p>
+						<p style={{ color: 'red' }}>
+							{data === 'canceled' ? data : 'Not received'}
+						</p>
 					)}
 				</span>
 			),
@@ -63,10 +69,14 @@ const History = () => {
 						<h3 style={{ display: 'flex', gap: '5px' }}>
 							{getLang === 'বাং' ? 'স্ট্যাটাস' : 'Status'} :{' '}
 							<span style={{ textTransform: 'capitalize', fontWeight: '500' }}>
-								{data == 'pending' ? (
-									<p style={{ color: 'green' }}>{details.status}</p>
+								{details.status == 'received' ? (
+									<p style={{ color: 'green' }}>Received</p>
 								) : (
-									<p style={{ color: 'red' }}>{details.status}</p>
+									<p style={{ color: 'red' }}>
+										{details.status === 'cancel'
+											? details.status
+											: 'Not received'}
+									</p>
 								)}
 							</span>
 						</h3>
@@ -92,7 +102,7 @@ const History = () => {
 						style={{ textAlign: 'center' }}
 						columns={isMobile ? mobileColumns : columns}
 						dataSource={Array.isArray(data.data) ? data.data : []}
-						pagination={false}
+						pagination={config}
 					/>
 				</div>
 			</div>

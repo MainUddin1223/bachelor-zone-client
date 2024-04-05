@@ -4,6 +4,11 @@
 	height: 100%;
 	margin-bottom: 15px;
 }
+.loader_container {
+	min-height: 150px;
+	position: relative;
+	width: 100%;
+}
 .profile_container {
 	display: flex;
 	align-items: center;

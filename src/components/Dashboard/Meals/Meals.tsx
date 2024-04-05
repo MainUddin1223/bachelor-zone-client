@@ -12,6 +12,7 @@ import {
 } from '@/redux/api/userApi';
 import dayjs from 'dayjs';
 import { useState } from 'react';
+import Loader from '@/components/Loader/Loader';
 
 const UpcomingMeals = () => {
 	const [open, setOpen] = useState(false);
@@ -28,7 +29,12 @@ const UpcomingMeals = () => {
 	const { data, isLoading } = useGetUpcomingOrdersQuery(undefined);
 	const [confirmOrder] = useConfirmOrderMutation();
 	const [cancelOrder] = useCancelOrderMutation();
-	if (isLoading) return <h1>Loading</h1>;
+	if (isLoading)
+		return (
+			<div className={Styles.loader_container}>
+				<Loader />
+			</div>
+		);
 
 	const handleOk = async () => {
 		setConfirmLoading(true);
@@ -108,7 +114,7 @@ const UpcomingMeals = () => {
 									setOrderId(details.id);
 								}}
 							>
-								{orderAgainBtn}
+								{cancelOrderBtn}
 							</Button>
 						)}
 					</>

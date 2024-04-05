@@ -1,0 +1,6 @@
+.container {
+	position: absolute;
+	left: 45%;
+	top: 45%;
+	transform: translate(-45, -45);
+}
