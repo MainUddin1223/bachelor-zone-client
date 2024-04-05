@@ -1,5 +1,5 @@
 'use client';
-import { Col, Flex, Row } from 'antd';
+import { Col, Row } from 'antd';
 import React, { useEffect, useState } from 'react';
 import Styles from './Dashboard.module.css';
 import Profile from './Profile/Profile';
@@ -8,10 +8,24 @@ import Footer from '../Footer/Footer';
 import History from './History/History';
 import Order from './Order/Order';
 import UpcomingMeals from './Meals/Meals';
-import { useGetInfoQuery } from '@/redux/api/userApi';
-import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
+import { getFromLocalStorage } from '@/utils/local-storage';
+import Loader from '../Loader/Loader';
+import { useRouter } from 'next/navigation';
+import { getAuthInfo } from '@/utils/jwt';
 
 const Dashboard = () => {
+	const router = useRouter();
+	const userInfo = getAuthInfo();
+	const [isLoading, setIsLoading] = useState(true);
+	useEffect(() => {
+		setTimeout(() => {
+			setIsLoading(false);
+		}, 1000);
+	}, []);
+	if (isLoading) return <Loader />;
+	if (!userInfo) {
+		router.push('/login');
+	}
 	return (
 		<>
 			<Header />

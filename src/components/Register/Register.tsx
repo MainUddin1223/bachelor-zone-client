@@ -1,7 +1,7 @@
 'use client';
 import { useAppSelector } from '@/redux/hooks';
 import Styles from './Register.module.css';
-import { Button, Col, Input, Row, Radio } from 'antd';
+import { Button, Col, Input, Row, Radio, message } from 'antd';
 import Image from 'next/image';
 import register_img from '@/assets/register.png';
 import Link from 'next/link';
@@ -10,8 +10,27 @@ import type { RadioChangeEvent } from 'antd';
 
 const Register = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
-	const [value, setValue] = useState('nid');
+	const [signUpData, setSignUpData] = useState({
+		name: '',
+		phone: '',
+		password: '',
+		confirmPassword: '',
+	});
 	const getLang = basicData.lang;
+
+	const handleSignUp = () => {
+		const phoneRegex = /^01\d{9}$/;
+		if (!phoneRegex.test(signUpData.phone)) {
+			message.error('Invalid Phone number');
+			return;
+		}
+		setSignUpData({ ...signUpData, phone: '+88' + signUpData.phone });
+		if (signUpData.password !== signUpData.confirmPassword) {
+			message.error('Password and confirm password not matched');
+			return;
+		}
+		console.log(signUpData);
+	};
 
 	return (
 		<div className={Styles.container}>
@@ -33,39 +52,69 @@ const Register = () => {
 						<div>
 							<div className={Styles.input_container}>
 								<p>{getLang == 'বাং' ? 'নাম' : 'Name'}</p>
-								<Input placeholder="John doe" />
+								<Input
+									onChange={(event) => {
+										setSignUpData({ ...signUpData, name: event.target.value });
+									}}
+									placeholder="John doe"
+									value={signUpData.name}
+								/>
 							</div>
 							<div className={Styles.input_container}>
 								<p>{getLang == 'বাং' ? 'ফোন নাম্বর' : 'Phone number'}</p>
-								<Input type="number" placeholder="+8801*********" />
+								<Input
+									type="number"
+									placeholder="+8801*********"
+									onChange={(event) => {
+										setSignUpData({ ...signUpData, phone: event.target.value });
+									}}
+									value={signUpData.phone}
+								/>
 							</div>
 							<div className={Styles.input_container}>
-								<p>{getLang == 'বাং' ? 'ডকুমেন্টের ধরন' : 'Document type'}</p>
-								<Radio.Group
-									onChange={(e: RadioChangeEvent) => {
-										console.log('radio checked', e.target.value);
-										setValue(e.target.value);
+								<p>{getLang == 'বাং' ? 'পাসওয়ার্ড' : 'Password'}</p>
+								<Input.Password
+									onChange={(event) => {
+										setSignUpData({
+											...signUpData,
+											password: event.target.value,
+										});
 									}}
-									value={value}
-								>
-									<Radio value={'nid'}>
-										{getLang == 'বাং' ? 'এনআইডি' : 'NID'}
-									</Radio>
-									<Radio value={'brn'}>
-										{getLang == 'বাং' ? 'জম্মনিবন্ধন' : 'Birth Reg'}
-									</Radio>
-								</Radio.Group>
+									placeholder="*******"
+									value={signUpData.password}
+								/>
 							</div>
 							<div className={Styles.input_container}>
 								<p>
 									{getLang == 'বাং'
-										? 'এনআইডি/জম্মনিবন্ধন নাম্বার'
-										: 'NID Number / Birth reg number'}
+										? 'পাসওয়ার্ড নিশ্চিত করুন'
+										: 'Confirm Password'}
 								</p>
-								<Input placeholder="2196415318" type="number" />
+								<Input.Password
+									onChange={(event) => {
+										setSignUpData({
+											...signUpData,
+											confirmPassword: event.target.value,
+										});
+									}}
+									placeholder="*******"
+									value={signUpData.confirmPassword}
+								/>
 							</div>
 							<div>
 								<Button
+									onClick={handleSignUp}
+									disabled={
+										!signUpData.name ||
+										!signUpData.confirmPassword ||
+										!signUpData.password ||
+										!signUpData.phone ||
+										signUpData.password.length > 16 ||
+										signUpData.password.length < 6 ||
+										signUpData.confirmPassword.length > 16 ||
+										signUpData.confirmPassword.length < 6 ||
+										signUpData.phone.length !== 11
+									}
 									type="primary"
 									style={{ display: 'block', margin: '5px auto' }}
 								>

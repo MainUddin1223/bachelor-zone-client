@@ -9,8 +9,10 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useLoginMutation } from '@/redux/api/authApi';
 import { useRouter } from 'next/navigation';
+import { getAuthInfo } from '@/utils/jwt';
 
 const Login = () => {
+	const userInfo = getAuthInfo();
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
 	const router = useRouter();
@@ -20,6 +22,10 @@ const Login = () => {
 		phone: '',
 		password: '',
 	});
+
+	if (userInfo) {
+		router.push('/dashboard');
+	}
 
 	const handleLogin = async () => {
 		try {

@@ -1,16 +1,18 @@
 'use client';
 import Styles from './Header.module.css';
-import { Switch, Flex, ConfigProvider } from 'antd';
+import { Switch, Flex, ConfigProvider, Button, message } from 'antd';
 import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
 import { useEffect } from 'react';
 import Link from 'next/link';
 import { addBasicData } from '@/redux/slice/basicSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { usePathname, useRouter } from 'next/navigation';
+import { getAuthInfo } from '@/utils/jwt';
 
 const Header = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const dispatch = useAppDispatch();
+	const userInfo = getAuthInfo();
 	const getSetLanguage = getFromLocalStorage('lang');
 	const router = useRouter();
 	const pathname = usePathname();
@@ -35,6 +37,12 @@ const Header = () => {
 		}
 	};
 
+	const handleLogout = () => {
+		localStorage.clear();
+		router.push('/');
+		message.success('Logout successful');
+	};
+
 	return (
 		<div className={Styles.container}>
 			<div className={Styles.header_container}>
@@ -46,11 +54,6 @@ const Header = () => {
 					</div>
 					{
 						<div className={Styles.login_container}>
-							{showLoginBtn && (
-								<Link href={'/login'} className={Styles.login_button}>
-									Login
-								</Link>
-							)}
 							<ConfigProvider
 								theme={{
 									components: {
@@ -67,6 +70,25 @@ const Header = () => {
 									onChange={(value) => handleChangeLanguage(value)}
 								/>
 							</ConfigProvider>
+							{userInfo ? (
+								<p onClick={handleLogout} className={Styles.login_button}>
+									Logout
+								</p>
+							) : (
+								<>
+									{showLoginBtn && (
+										<Button
+											onClick={() => router.push('/login')}
+											className={Styles.login_button}
+										>
+											Login
+										</Button>
+										// <Link href={'/login'} className={Styles.login_button}>
+										// 	Login
+										// </Link>
+									)}
+								</>
+							)}
 						</div>
 					}
 				</Flex>
