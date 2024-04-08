@@ -1,0 +1,51 @@
+.container {
+	min-height: 60vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	position: relative;
+}
+.card {
+	width: 50%;
+	text-align: center;
+}
+.info_container {
+	display: flex;
+	align-items: center;
+	justify-content: space-between;
+}
+.info {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-weight: 500;
+	cursor: pointer;
+	color: var(--primary-color);
+	position: absolute;
+	right: 25px;
+}
+.expenses_info {
+	padding: 5px 15px;
+}
+.expenses_info h3 {
+	padding: 5px 0;
+}
+.expenses p {
+	padding: 5px 0;
+}
+.image {
+	padding: 5px;
+}
+.claim_text {
+	margin: 15px 0;
+	font-size: medium;
+	font-weight: 500;
+}
+.container {
+	font-size: medium;
+}
+@media (max-width: 767px) {
+	.card {
+		width: 90%;
+	}
+}

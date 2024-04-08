@@ -15,7 +15,7 @@ import { getAuthInfo } from '@/utils/jwt';
 
 const Dashboard = () => {
 	const router = useRouter();
-	const userInfo = getAuthInfo();
+	const userInfo: any = getAuthInfo();
 	const [isLoading, setIsLoading] = useState(true);
 	useEffect(() => {
 		setTimeout(() => {
@@ -25,6 +25,11 @@ const Dashboard = () => {
 	if (isLoading) return <Loader />;
 	if (!userInfo) {
 		router.push('/login');
+		return;
+	}
+	if (!userInfo.is_claimed) {
+		router.push('/claim');
+		return;
 	}
 	return (
 		<>

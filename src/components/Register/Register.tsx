@@ -46,6 +46,9 @@ const Register = () => {
 				password: '',
 				confirmPassword: '',
 			});
+			const accessToken = result.data.accessToken;
+			typeof window !== 'undefined' &&
+				localStorage.setItem('accessToken', accessToken);
 		}
 	};
 
