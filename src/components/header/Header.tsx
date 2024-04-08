@@ -38,8 +38,8 @@ const Header = () => {
 	};
 
 	const handleLogout = () => {
-		localStorage.clear();
 		router.push('/');
+		localStorage.clear();
 		message.success('Logout successful');
 	};
 

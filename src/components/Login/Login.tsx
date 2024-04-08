@@ -30,7 +30,7 @@ const Login = () => {
 	const handleLogin = async () => {
 		try {
 			setIsLoading(true);
-			const res = await login({ ...loginData }).unwrap();
+			const res = await login({ ...loginData,phone:'+88' + loginData.phone }).unwrap();
 			if (res.success) {
 				message.success('User logged in successfully');
 				const accessToken = res?.accessToken;
