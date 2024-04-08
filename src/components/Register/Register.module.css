@@ -34,6 +34,9 @@
 	.container {
 		width: 95%;
 	}
+	.register_img_container {
+		display: none;
+	}
 }
 
 /* Large desktop */

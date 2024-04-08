@@ -6,7 +6,8 @@ import Image from 'next/image';
 import register_img from '@/assets/register.png';
 import Link from 'next/link';
 import { useState } from 'react';
-import type { RadioChangeEvent } from 'antd';
+import { useSignUpMutation } from '@/redux/api/authApi';
+import { useRouter } from 'next/navigation';
 
 const Register = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
@@ -17,25 +18,41 @@ const Register = () => {
 		confirmPassword: '',
 	});
 	const getLang = basicData.lang;
+	const router = useRouter();
+	const [signUp] = useSignUpMutation();
 
-	const handleSignUp = () => {
+	const handleSignUp = async () => {
 		const phoneRegex = /^01\d{9}$/;
 		if (!phoneRegex.test(signUpData.phone)) {
 			message.error('Invalid Phone number');
 			return;
 		}
-		setSignUpData({ ...signUpData, phone: '+88' + signUpData.phone });
 		if (signUpData.password !== signUpData.confirmPassword) {
 			message.error('Password and confirm password not matched');
 			return;
 		}
-		console.log(signUpData);
+		const result: any = await signUp({
+			...signUpData,
+			phone: '+88' + signUpData.phone,
+		});
+		if (result.data.success == false) {
+			message.error(result.data.message);
+		} else {
+			message.success('Sign up successful');
+			router.push('/claim');
+			setSignUpData({
+				name: '',
+				phone: '',
+				password: '',
+				confirmPassword: '',
+			});
+		}
 	};
 
 	return (
 		<div className={Styles.container}>
 			<Row gutter={[20, 20]} align="middle" justify="center">
-				<Col xs={24} md={12}>
+				<Col xs={24} md={12} className={Styles.register_img_container}>
 					<Image
 						src={register_img}
 						width={50}
@@ -64,7 +81,7 @@ const Register = () => {
 								<p>{getLang == 'বাং' ? 'ফোন নাম্বর' : 'Phone number'}</p>
 								<Input
 									type="number"
-									placeholder="+8801*********"
+									placeholder="01*********"
 									onChange={(event) => {
 										setSignUpData({ ...signUpData, phone: event.target.value });
 									}}
