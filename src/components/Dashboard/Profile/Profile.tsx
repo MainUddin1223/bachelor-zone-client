@@ -7,9 +7,15 @@ import { useGetInfoQuery } from '@/redux/api/userApi';
 import Statics from '../Statics/Statics';
 import { info } from 'console';
 import Loader from '@/components/Loader/Loader';
+import Order from '../Order/Order';
+import TeamInfo from '../TeamInfo/TeamInfo';
 
 const Profile = () => {
 	const { data, isLoading } = useGetInfoQuery(undefined);
+	const teamInfo = data?.teamInfo;
+	const showTeamDiv = teamInfo?.id ? {} : { display: 'none' };
+	const divWidth = teamInfo?.id ? 12 : 24;
+	console.log(teamInfo);
 
 	return (
 		<Row gutter={[20, 20]}>
@@ -57,6 +63,14 @@ const Profile = () => {
 						<Statics info={data} />
 					)}
 				</div>
+			</Col>
+			<Col md={12} xs={24} style={showTeamDiv}>
+				<div className={Styles.container}>
+					{teamInfo?.id ? <TeamInfo teamInfo={teamInfo} /> : <></>}
+				</div>
+			</Col>
+			<Col md={divWidth} xs={24}>
+				<Order />
 			</Col>
 		</Row>
 	);

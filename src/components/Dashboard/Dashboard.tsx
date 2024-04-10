@@ -41,9 +41,6 @@ const Dashboard = () => {
 							<Profile />
 						</div>
 					</Col>
-					<Col xs={24}>
-						<Order />
-					</Col>
 					<Col xs={24} sm={12}></Col>
 					<Col xs={24}>
 						<UpcomingMeals />
