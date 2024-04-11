@@ -47,6 +47,13 @@ const userApi = baseApi.injectEndpoints({
 			}),
 			invalidatesTags: ['user'],
 		}),
+		getTransactionHistory: build.query({
+			query: () => ({
+				url: `${userUrl}/transaction`,
+				method: 'GET',
+			}),
+			providesTags: ['user'],
+		}),
 	}),
 });
 
@@ -57,4 +64,5 @@ export const {
 	useGetUpcomingOrdersQuery,
 	useCancelOrderMutation,
 	useConfirmOrderMutation,
+	useGetTransactionHistoryQuery,
 } = userApi;

@@ -12,6 +12,7 @@ import { getFromLocalStorage } from '@/utils/local-storage';
 import Loader from '../Loader/Loader';
 import { useRouter } from 'next/navigation';
 import { getAuthInfo } from '@/utils/jwt';
+import Transaction from './Transation/Transaction';
 
 const Dashboard = () => {
 	const router = useRouter();
@@ -47,6 +48,9 @@ const Dashboard = () => {
 					</Col>
 					<Col xs={24}>
 						<History />
+					</Col>
+					<Col xs={24}>
+						<Transaction />
 					</Col>
 				</Row>
 			</div>
