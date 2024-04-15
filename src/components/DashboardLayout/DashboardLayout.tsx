@@ -12,7 +12,6 @@ const DashboardLayout = ({ children }: { children: ReactNode }) => {
 	return (
 		<>
 			<Header />
-			<NavBar />
 			{children}
 			<Footer />
 		</>

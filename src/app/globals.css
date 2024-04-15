@@ -1,7 +1,15 @@
-:root {
-	--primary-color: #3498db;
-	--secondary-color: rgb(222, 205, 205);
+/* :root {
 	--accent-color: rgb(67, 65, 65);
+	--primary-color: #41613c;
+	--secondary-color: #80ac6d;
+	/* --accent-color: #aec7ce; */
+/* --primary-text-color: #000000; */
+
+:root {
+	--accent-color: rgb(67, 65, 65);
+	--primary-color: #387849;
+	--secondary-color: #e7e3ce;
+	--brand-color: #b5ccbf;
 	--primary-text-color: #000000;
 }
 

@@ -1,0 +1,40 @@
+.nav_container {
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 25px;
+}
+.nav_item {
+	color: var(--primary-text-color);
+	font-weight: 500;
+}
+.nav_item:hover {
+	color: var(--accent-color);
+}
+.selected_item {
+	text-decoration: underline;
+	color: var(--primary-color);
+}
+.login_button {
+	color: var(--primary-text-color);
+	font-weight: bold;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.login_button:hover {
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+.login_container {
+	display: flex;
+	align-items: center;
+	gap: 15px;
+}
+.login_button {
+	color: var(--primary-text-color);
+	font-weight: bold;
+	padding: 5px 10px;
+	cursor: pointer;
+}
+.login_button:hover {
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}

@@ -5,12 +5,9 @@ import Styles from './Dashboard.module.css';
 import Profile from './Profile/Profile';
 import Header from '../header/Header';
 import Footer from '../Footer/Footer';
-import History from './History/History';
-import UpcomingMeals from './Meals/Meals';
 import Loader from '../Loader/Loader';
 import { useRouter } from 'next/navigation';
 import { getAuthInfo } from '@/utils/jwt';
-import Transaction from './Transation/Transaction';
 import NavBar from './NavBar/NavBar';
 
 const Dashboard = () => {
@@ -35,9 +32,6 @@ const Dashboard = () => {
 		<>
 			<Header />
 			<div className={Styles.container}>
-				<div>
-					<NavBar />
-				</div>
 				<Row gutter={[20, 20]}>
 					<Col xs={24}>
 						<div className={Styles.profile_container}>
