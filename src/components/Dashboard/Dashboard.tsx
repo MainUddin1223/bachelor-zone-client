@@ -6,13 +6,12 @@ import Profile from './Profile/Profile';
 import Header from '../header/Header';
 import Footer from '../Footer/Footer';
 import History from './History/History';
-import Order from './Order/Order';
 import UpcomingMeals from './Meals/Meals';
-import { getFromLocalStorage } from '@/utils/local-storage';
 import Loader from '../Loader/Loader';
 import { useRouter } from 'next/navigation';
 import { getAuthInfo } from '@/utils/jwt';
 import Transaction from './Transation/Transaction';
+import NavBar from './NavBar/NavBar';
 
 const Dashboard = () => {
 	const router = useRouter();
@@ -36,21 +35,14 @@ const Dashboard = () => {
 		<>
 			<Header />
 			<div className={Styles.container}>
+				<div>
+					<NavBar />
+				</div>
 				<Row gutter={[20, 20]}>
 					<Col xs={24}>
 						<div className={Styles.profile_container}>
 							<Profile />
 						</div>
-					</Col>
-					<Col xs={24} sm={12}></Col>
-					<Col xs={24}>
-						<UpcomingMeals />
-					</Col>
-					<Col xs={24}>
-						<History />
-					</Col>
-					<Col xs={24}>
-						<Transaction />
 					</Col>
 				</Row>
 			</div>
