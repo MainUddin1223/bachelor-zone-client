@@ -76,22 +76,33 @@ const NavBar = () => {
 					<div className={Styles.login_container}>
 						<ConfigProvider
 							theme={{
+								token: {
+									colorPrimary: '#387849',
+									colorText: '#ffffff',
+									colorTextQuaternary: '#b5ccbf',
+								},
 								components: {
-									Switch: {
-										colorTextQuaternary: '#1677ff',
-									},
+									Switch: {},
 								},
 							}}
 						>
 							<Switch
-								checkedChildren="বাং"
-								unCheckedChildren="ENG"
+								checkedChildren={
+									<div style={{ color: 'white', fontWeight: 'bold' }}>বাং</div>
+								}
+								unCheckedChildren={
+									<div style={{ fontWeight: 'bold' }}>ENG</div>
+								}
 								value={basicData.lang == 'eng' ? false : true}
 								onChange={(value) => handleChangeLanguage(value)}
 							/>
 						</ConfigProvider>
 						{userInfo ? (
-							<p onClick={handleLogout} className={Styles.login_button}>
+							<p
+								onClick={handleLogout}
+								className={Styles.nav_item}
+								style={{ cursor: 'pointer' }}
+							>
 								Logout
 							</p>
 						) : (
@@ -103,9 +114,6 @@ const NavBar = () => {
 									>
 										Login
 									</Button>
-									// <Link href={'/login'} className={Styles.login_button}>
-									// 	Login
-									// </Link>
 								)}
 							</>
 						)}
@@ -115,26 +123,32 @@ const NavBar = () => {
 				<div className={Styles.login_container}>
 					<ConfigProvider
 						theme={{
+							token: {
+								colorPrimary: '#387849',
+								colorText: '#ffffff',
+								colorTextQuaternary: '#b5ccbf',
+							},
 							components: {
-								Switch: {
-									colorTextQuaternary: '#1677ff',
-								},
+								Switch: {},
 							},
 						}}
 					>
 						<Switch
-							checkedChildren="বাং"
-							unCheckedChildren="ENG"
+							checkedChildren={
+								<div style={{ color: 'white', fontWeight: 'bold' }}>বাং</div>
+							}
+							unCheckedChildren={<div style={{ fontWeight: 'bold' }}>ENG</div>}
 							value={basicData.lang == 'eng' ? false : true}
 							onChange={(value) => handleChangeLanguage(value)}
 						/>
 					</ConfigProvider>
-					<Button
-						onClick={() => router.push('/login')}
-						className={Styles.login_button}
+					<Link
+						href={'/login'}
+						className={`${Styles.nav_item}`}
+						style={{ cursor: 'pointer' }}
 					>
-						Login
-					</Button>
+						{getLang === 'বাং' ? 'লগইন' : 'Login'}
+					</Link>
 				</div>
 			)}
 		</div>
