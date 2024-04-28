@@ -132,7 +132,35 @@ const NavBar = () => {
 						>
 							<Drawer
 								style={{ backgroundColor: '#e7e3ce' }}
-								title={<div></div>}
+								title={
+									<div style={{ marginLeft: '-15px' }}>
+										<ConfigProvider
+											theme={{
+												token: {
+													colorPrimary: '#387849',
+													colorText: '#ffffff',
+													colorTextQuaternary: '#b5ccbf',
+												},
+												components: {
+													Switch: {},
+												},
+											}}
+										>
+											<Switch
+												checkedChildren={
+													<div style={{ color: 'white', fontWeight: 'bold' }}>
+														বাং
+													</div>
+												}
+												unCheckedChildren={
+													<div style={{ fontWeight: 'bold' }}>ENG</div>
+												}
+												value={basicData.lang == 'eng' ? false : true}
+												onChange={(value) => handleChangeLanguage(value)}
+											/>
+										</ConfigProvider>
+									</div>
+								}
 								placement={'left'}
 								width={250}
 								closeIcon={
@@ -140,17 +168,47 @@ const NavBar = () => {
 										style={{
 											position: 'absolute',
 											right: '15px',
-											top: '7px',
-											fontSize: '21px',
+											top: '17px',
+											fontSize: '25px',
 										}}
 									/>
 								}
 								onClose={onClose}
 								open={open}
 							>
-								<p>Some contents...</p>
-								<p>Some contents...</p>
-								<p>Some contents...</p>
+								<div className={Styles.drawer_nav_content}>
+									<Link
+										href={'/dashboard'}
+										className={`${Styles.nav_item} ${currentPage === 'dashboard' && Styles.selected_item}`}
+									>
+										{getLang === 'বাং' ? 'ড্যাশবোর্ড' : 'Dashboard'}
+									</Link>
+									<Link
+										href={'/dashboard/orders'}
+										className={`${Styles.nav_item} ${currentPage === 'orders' && Styles.selected_item}`}
+									>
+										{getLang === 'বাং' ? 'অর্ডার' : 'Orders'}
+									</Link>
+									<Link
+										href={'/dashboard/history'}
+										className={`${Styles.nav_item} ${currentPage === 'history' && Styles.selected_item}`}
+									>
+										{getLang === 'বাং' ? 'হিস্টোরি' : 'History'}
+									</Link>
+									<Link
+										href={'/dashboard/transaction'}
+										className={`${Styles.nav_item} ${currentPage === 'transaction' && Styles.selected_item}`}
+									>
+										{getLang === 'বাং' ? 'লেনদেন' : 'Transaction'}
+									</Link>
+									<p
+										onClick={handleLogout}
+										className={Styles.nav_item}
+										style={{ cursor: 'pointer' }}
+									>
+										{getLang === 'বাং' ? 'লগআউট' : 'Logout'}
+									</p>
+								</div>
 							</Drawer>
 						</ConfigProvider>
 					</div>
