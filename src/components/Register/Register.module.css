@@ -32,7 +32,7 @@
 /* Smartphone */
 @media (max-width: 576px) {
 	.container {
-		width: 95%;
+		width: 90%;
 	}
 	.register_img_container {
 		display: none;

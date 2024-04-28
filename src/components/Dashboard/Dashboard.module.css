@@ -11,14 +11,14 @@
 /* Smartphone */
 @media (max-width: 576px) {
 	.container {
-		width: 95%;
+		width: 90%;
 	}
 }
 
 /* Tablet */
 @media (min-width: 577px) and (max-width: 767px) {
 	.container {
-		width: 95%;
+		width: 90%;
 	}
 }
 /* Tablet */

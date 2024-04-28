@@ -7,7 +7,7 @@
 .header_container {
 	width: 80%;
 	margin: 0 auto;
-	padding: 10px;
+	padding: 10px 0;
 }
 .text_logo {
 	font-size: 2rem;
@@ -31,7 +31,7 @@
 /* Smartphone */
 @media (max-width: 576px) {
 	.header_container {
-		width: 95%;
+		width: 90%;
 	}
 	.text_logo {
 		font-size: 18px;
@@ -41,7 +41,7 @@
 /* Tablet */
 @media (min-width: 577px) and (max-width: 767px) {
 	.header_container {
-		width: 95%;
+		width: 90%;
 	}
 }
 /* Tablet */

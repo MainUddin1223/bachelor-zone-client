@@ -122,7 +122,10 @@ const NavBar = () => {
 						</div>
 					</div>
 					<div className={Styles.mobile_nav_container}>
-						<MenuOutlined onClick={() => setOpen(true)} />
+						<MenuOutlined
+							onClick={() => setOpen(true)}
+							style={{ fontSize: '25px' }}
+						/>
 						<ConfigProvider
 							theme={{
 								token: {

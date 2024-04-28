@@ -1,28 +1,23 @@
 .container {
 	width: 80%;
-	margin: 0 auto;
-	margin-top: 40px;
-}
-.heading {
-	text-align: center;
-	padding: 20px;
-}
-.about_section {
-	display: flex;
-	align-items: center;
-	justify-content: center;
-}
-.about_text {
-	text-align: justify;
-	font-size: 17px;
-	line-height: 25px;
-	padding: 20px;
+	margin: 25px auto;
 }
 /* Smartphone */
 @media (max-width: 576px) {
 	.container {
 		width: 90%;
 	}
+}
+
+/* Tablet */
+@media (min-width: 577px) and (max-width: 767px) {
+	.container {
+		width: 90%;
+	}
+}
+/* Tablet */
+@media (max-width: 991px) {
+	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
 }
 
 /* Large desktop */
