@@ -10,7 +10,9 @@ const page = () => {
 		<DashboardLayout>
 			<div className={Styles.container}>
 				<Order />
-				<UpcomingMeals />
+				<div className={Styles.meals}>
+					<UpcomingMeals />
+				</div>
 			</div>
 		</DashboardLayout>
 	);

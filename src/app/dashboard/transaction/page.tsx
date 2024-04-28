@@ -1,11 +1,15 @@
+'use client';
+
 import Transaction from '@/components/Dashboard/Transation/Transaction';
 import DashboardLayout from '@/components/DashboardLayout/DashboardLayout';
-import React from 'react';
+import Styles from './page.module.css';
 
 const page = () => {
 	return (
 		<DashboardLayout>
-			<Transaction />
+			<div className={Styles.container}>
+				<Transaction />
+			</div>
 		</DashboardLayout>
 	);
 };
