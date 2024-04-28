@@ -1,6 +1,5 @@
 'use client';
-import hero from '@/assets/hero.png';
-import Image from 'next/image';
+
 import Styles from './Hero.module.css';
 import { Button } from 'antd';
 import { useAppSelector } from '@/redux/hooks';
@@ -10,23 +9,16 @@ const Hero = () => {
 	const getLang = basicData.lang;
 	return (
 		<div className={Styles.container}>
-			<Image
-				src={hero}
-				height={100}
-				width={100}
-				alt="hero"
-				className={Styles.hero_image}
-			/>
 			<div className={Styles.hero_description}>
 				<h1>
 					{getLang === 'বাং'
-						? 'আপনার ব্যক্তিগত সময় উপভোগ করুন'
-						: 'Enjoy your personal life'}
+						? 'সতেজ এবং স্বাস্থ্যকর দুপুরের খাবার উপভোগ করুন'
+						: 'Enjoy fresh and healthy lunch'}
 				</h1>
 				<p>
 					{getLang === 'বাং'
-						? 'আপনার খাবার এবং থাকার দায়িত্ব আমাদের উপর ছেড়ে দিন'
-						: 'We will take care of your food and accommodation'}
+						? 'আপনার দুপুরের খাবার দায়িত্ব আমাদের উপর ছেড়ে দিন'
+						: 'We will take care of your lunch'}
 				</p>
 				{/* <Button>Register Now</Button> */}
 				<Button>

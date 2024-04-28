@@ -1,17 +1,24 @@
 .container {
 	height: 80vh;
 	margin: 0 auto;
-	position: relative;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	text-align: center;
+	background-image: url('../../../assets/hero.jpg');
+	background-repeat: no-repeat;
+	background-size: cover;
+	background-position: center;
 }
-.hero_image {
-	height: 100%;
-	width: 100%;
-}
+
 .hero_description {
-	position: absolute;
-	top: 50%;
-	left: 50%;
-	transform: translate(-50%, -50%);
+	background-color: rgba(234, 226, 226, 0.406);
+	padding: 20px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
 	text-align: center;
 }
 .hero_description h1 {
@@ -23,20 +30,20 @@
 
 /* Smartphone */
 @media (max-width: 576px) {
-	.hero_description {
+	/* .hero_description {
 		top: 50%;
 		transform: translate(-50%, -50%);
 		width: 80%;
-	}
+	} */
 }
 
 /* Tablet */
 @media (min-width: 577px) and (max-width: 767px) {
-	.hero_description {
+	/* .hero_description {
 		top: 50%;
 		left: 40%;
 		transform: translate(-40%, -50%);
-	}
+	} */
 }
 /* Tablet */
 @media (min-width: 768px) and (max-width: 991px) {
