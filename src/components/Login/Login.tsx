@@ -97,7 +97,22 @@ const Login = () => {
 								/>
 							</div>
 							<div>
-								<Button className={Styles.login_btn} onClick={handleLogin}>
+								<Button
+									style={{
+										margin: '0 auto',
+										display: 'block',
+										backgroundColor: 'var(--brand-color)',
+									}}
+									disabled={
+										loginData.phone.length == 11 || loginData.phone.length == 14
+											? !loginData.phone || !loginData.password
+												? true
+												: false
+											: true
+									}
+									className={Styles.login_btn}
+									onClick={handleLogin}
+								>
 									Login
 								</Button>
 							</div>

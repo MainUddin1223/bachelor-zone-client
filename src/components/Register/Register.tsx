@@ -135,8 +135,11 @@ const Register = () => {
 										signUpData.confirmPassword.length < 6 ||
 										signUpData.phone.length !== 11
 									}
-									type="primary"
-									style={{ display: 'block', margin: '5px auto' }}
+									style={{
+										margin: '0 auto',
+										display: 'block',
+										backgroundColor: 'var(--brand-color)',
+									}}
 								>
 									{getLang === 'বাং' ? 'রেজিস্ট্রেশন করুন' : 'Register'}
 								</Button>
