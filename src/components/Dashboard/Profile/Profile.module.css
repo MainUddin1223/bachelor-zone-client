@@ -29,6 +29,12 @@
 .user_name {
 	font-size: 19px;
 }
+.change_password_container {
+	margin-top: 15px;
+	display: flex;
+	flex-direction: column;
+	gap: 15px;
+}
 @media (max-width: 991px) {
 	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
 	.setting {
