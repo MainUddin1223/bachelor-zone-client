@@ -19,15 +19,17 @@
 .input_container p {
 	padding: 5px 0;
 }
-.login_btn {
-	text-align: center;
-	margin: 5px auto;
-}
+
 .contact_link {
 	cursor: pointer;
 	color: var(--primary-color);
 	font-size: larger;
 	font-weight: 500;
+}
+.register_btn {
+	display: block;
+	margin: 5px auto;
+	background-color: var(--brand-color);
 }
 /* Smartphone */
 @media (max-width: 576px) {

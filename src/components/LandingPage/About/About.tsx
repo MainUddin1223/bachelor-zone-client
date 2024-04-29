@@ -15,8 +15,8 @@ const About = () => {
 			</h1>
 			<h3 style={{ textAlign: 'center', padding: '5px' }}>
 				{getLang === 'বাং'
-					? 'আমরা আপনার খাবার এবং থাকার নিশ্চিয়তা প্রদান করছি । আমাদের সাথে যুক্ত হয়ে জীবনকে সহজতর করে তুলুন'
-					: 'We will ensure your food and accommodation.Join us and make your life easier and healthy'}
+					? 'আমরা আপনার প্রতিদিনের দুপুরের খাবরের  নিশ্চিয়তা প্রদান করছি । আমাদের সাথে যুক্ত হয়ে জীবনকে সহজতর করে তুলুন'
+					: `We will ensure your everyday's lunch and make your life easier and healthy`}
 			</h3>
 			<Row justify={'center'} align={'middle'} gutter={[20, 20]}>
 				<Col xs={24} sm={12}>
@@ -25,8 +25,8 @@ const About = () => {
 				<Col xs={24} sm={12}>
 					<p className={Styles.about_text}>
 						{getLang === 'বাং'
-							? 'ব্যচেলরদের জন্য সবচেয়ে চ্যালেঞ্জের দুইটি বিষয় হলো খাবার এবং থাকার ব্যাবস্থা নিশ্চিত করা । একজন ব্যচেলের লাইফে এই সমস্যাটা লেগেই থাকে । এই সমস্যা সমাধানে আমরা নিয়ে এসেছি ব্যচেলর জোন । এটি একটি ব্যচেলর কেন্দ্রিক সেবা ব্যাবস্থা । আমরা ব্যচেলরদের জন্য নিয়ে এসেছি স্বল্প ব্যায়ে সর্বোচ্ছ সেবা । আমাদের সাথে যুক্ত হয়ে আপনি আপনার থাকা এবং খাবার সমস্যা স্থায়ীভাবে সমাধান করুন ।'
-							: 'Two of the most challenging things for bachelors are securing food and accommodation. This problem persists in the life of a bachelor. To solve this problem we have brought bachelor zone. It is a bachelor centric service system. We bring the best services for bachelors at low cost.By joining us you can solve your accommodation and food problem permanently.'}
+							? 'কর্মব্যস্ত জীবনে সবচেয়ে বড় সমস্যাটি হলো অফিসে দুপুরের খাবার নিশ্চিতকরণ । এই সমস্যা সমাধানে আমরা নিয়ে এসেছি ব্যচেলর জোন । আমরা কর্মব্যাস্ত মানুষের জন্য নিয়ে এসেছি স্বল্প ব্যায়ে সর্বোচ্ছ সেবা । আমাদের সাথে যুক্ত হয়ে আপনি আপনার দুপুরের খাবারের সমস্যা স্থায়ীভাবে সমাধান করুন ।'
+							: 'In work life ensuring lunch is a very big problem. To ensure lunch a person has to put 1-2 hours extra effort including his daily busy schedule.By taking our service you can easily make your life easier and solve this problem permanently '}
 					</p>
 				</Col>
 			</Row>

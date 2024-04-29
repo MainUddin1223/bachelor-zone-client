@@ -16,7 +16,7 @@
 	text-align: justify;
 	font-size: 17px;
 	line-height: 25px;
-	padding: 20px;
+	padding: 20px 0;
 }
 /* Smartphone */
 @media (max-width: 576px) {

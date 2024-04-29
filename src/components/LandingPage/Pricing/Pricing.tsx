@@ -19,12 +19,23 @@ const Pricing = () => {
 	const foodPricing =
 		getLang == 'বাং' ? (
 			<p className={Styles.price_tag}>
-				<span className={Styles.price}>৳৫০ </span> প্রতি বেলা
+				<span>
+					খাবার <span className={Styles.price}>৳৫৫ </span> জনপ্রতি
+				</span>{' '}
+				+
+				<span>
+					ডেলিভারি ফি <span className={Styles.price}> ৳১৫</span> +{' '}
+				</span>
+				<span>
+					সার্ভিস ফি<span className={Styles.price}> ৳৫ </span>
+				</span>
 			</p>
 		) : (
 			<p className={Styles.price_tag}>
 				{' '}
-				<span className={Styles.price}>৳50 </span> per meal
+				<span className={Styles.price}>Lunch ৳55/ meal + </span>
+				<span className={Styles.price}>Delivery fee ৳15 + </span>
+				<span className={Styles.price}>Service Fee ৳5</span>
 			</p>
 		);
 
@@ -33,8 +44,8 @@ const Pricing = () => {
 			<h1 className={Styles.pricing_header}>
 				{getLang == 'বাং' ? 'মূল্য তালিকা' : 'Pricing'}
 			</h1>
-			<Row gutter={[20, 20]}>
-				<Col xs={24} md={12}>
+			<Row gutter={[20, 20]} justify={'center'}>
+				{/* <Col xs={24} md={12}>
 					<div className={Styles.pricing_card_container}>
 						<h3 className={Styles.card_header}>
 							{' '}
@@ -58,11 +69,11 @@ const Pricing = () => {
 							</p>
 						</div>
 					</div>
-				</Col>
+				</Col> */}
 				<Col xs={24} md={12}>
 					<div className={Styles.pricing_card_container}>
 						<h3 className={Styles.card_header}>
-							{getLang == 'বাং' ? 'খাবার' : 'Food'}
+							{getLang == 'বাং' ? 'দুপুরের খাবার' : 'Lunch'}
 						</h3>
 						<span>{foodPricing}</span>
 						<div className={Styles.card_points}>

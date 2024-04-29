@@ -3,10 +3,12 @@
 import Styles from './Hero.module.css';
 import { Button } from 'antd';
 import { useAppSelector } from '@/redux/hooks';
+import { useRouter } from 'next/navigation';
 
 const Hero = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
+	const router = useRouter();
 	return (
 		<div className={Styles.container}>
 			<div className={Styles.hero_description}>
@@ -21,7 +23,7 @@ const Hero = () => {
 						: 'We will take care of your lunch'}
 				</p>
 				{/* <Button>Register Now</Button> */}
-				<Button>
+				<Button onClick={() => router.push('/register')}>
 					{getLang === 'বাং' ? 'রেজিস্ট্রেশন করুন' : 'Register Now'}
 				</Button>
 			</div>

@@ -97,11 +97,7 @@ const Login = () => {
 								/>
 							</div>
 							<div>
-								<Button
-									onClick={handleLogin}
-									type="primary"
-									style={{ display: 'block', margin: '5px auto' }}
-								>
+								<Button className={Styles.login_btn} onClick={handleLogin}>
 									Login
 								</Button>
 							</div>
