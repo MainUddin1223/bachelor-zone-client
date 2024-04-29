@@ -8,7 +8,11 @@ import { addBasicData } from '@/redux/slice/basicSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { usePathname, useRouter } from 'next/navigation';
 import { getAuthInfo } from '@/utils/jwt';
-import { CloseCircleOutlined, MenuOutlined } from '@ant-design/icons';
+import {
+	CloseCircleOutlined,
+	MenuOutlined,
+	SettingFilled,
+} from '@ant-design/icons';
 import type { DrawerProps, RadioChangeEvent } from 'antd';
 
 const NavBar = () => {
@@ -180,6 +184,7 @@ const NavBar = () => {
 								open={open}
 							>
 								<div className={Styles.drawer_nav_content}>
+									<SettingFilled />
 									<Link
 										href={'/dashboard'}
 										className={`${Styles.nav_item} ${currentPage === 'dashboard' && Styles.selected_item}`}

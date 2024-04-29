@@ -14,8 +14,10 @@ import { useState } from 'react';
 import dayjs from 'dayjs';
 import { useAppSelector } from '@/redux/hooks';
 import { useOrderMealMutation } from '@/redux/api/userApi';
+import { useRouter } from 'next/navigation';
 
 const Order = () => {
+	const router = useRouter();
 	const [open, setOpen] = useState(false);
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
@@ -39,6 +41,7 @@ const Order = () => {
 		setConfirmLoading(false);
 		if (result.success) {
 			message.success('Order placed successfully');
+			router.push('/dashboard/orders');
 		} else {
 			message.error(result.errorMessages);
 		}

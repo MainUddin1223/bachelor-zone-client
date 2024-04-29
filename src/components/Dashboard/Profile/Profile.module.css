@@ -13,6 +13,13 @@
 	display: flex;
 	align-items: center;
 }
+.setting {
+	position: absolute;
+	top: 20px;
+	right: 20px;
+	font-size: 21px;
+	cursor: pointer;
+}
 .profile_info_container {
 	padding-left: 15px;
 }
@@ -21,6 +28,12 @@
 }
 .user_name {
 	font-size: 19px;
+}
+@media (max-width: 991px) {
+	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
+	.setting {
+		visibility: hidden;
+	}
 }
 /* Smartphone */
 @media (max-width: 576px) {

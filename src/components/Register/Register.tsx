@@ -22,7 +22,7 @@ const Register = () => {
 	const [signUp] = useSignUpMutation();
 
 	const handleSignUp = async () => {
-		const phoneRegex = /^01\d{9}$/;
+		const phoneRegex = /^(01|\+8801)\d{9}$/;
 		if (!phoneRegex.test(signUpData.phone)) {
 			message.error('Invalid Phone number');
 			return;
@@ -31,10 +31,12 @@ const Register = () => {
 			message.error('Password and confirm password not matched');
 			return;
 		}
-		const result: any = await signUp({
-			...signUpData,
-			phone: '+88' + signUpData.phone,
-		});
+		const result: any = signUpData.phone.startsWith('0')
+			? await signUp({
+					...signUpData,
+					phone: '+88' + signUpData.phone,
+				})
+			: signUp(signUpData);
 		if (result.data.success == false) {
 			message.error(result.data.message);
 		} else {
@@ -83,7 +85,6 @@ const Register = () => {
 							<div className={Styles.input_container}>
 								<p>{getLang == 'বাং' ? 'ফোন নাম্বর' : 'Phone number'}</p>
 								<Input
-									type="number"
 									placeholder="01*********"
 									onChange={(event) => {
 										setSignUpData({ ...signUpData, phone: event.target.value });
@@ -125,15 +126,19 @@ const Register = () => {
 								<Button
 									onClick={handleSignUp}
 									disabled={
-										!signUpData.name ||
-										!signUpData.confirmPassword ||
-										!signUpData.password ||
-										!signUpData.phone ||
-										signUpData.password.length > 16 ||
-										signUpData.password.length < 6 ||
-										signUpData.confirmPassword.length > 16 ||
-										signUpData.confirmPassword.length < 6 ||
-										signUpData.phone.length !== 11
+										signUpData.phone.length == 11 ||
+										signUpData.phone.length == 14
+											? !signUpData.name ||
+												!signUpData.confirmPassword ||
+												!signUpData.password ||
+												!signUpData.phone ||
+												signUpData.password.length > 16 ||
+												signUpData.password.length < 6 ||
+												signUpData.confirmPassword.length > 16 ||
+												signUpData.confirmPassword.length < 6
+												? true
+												: false
+											: true
 									}
 									style={{
 										margin: '0 auto',

@@ -29,11 +29,20 @@ const Login = () => {
 
 	const handleLogin = async () => {
 		try {
+			const phoneRegex = /^(01|\+8801)\d{9}$/;
+			if (!phoneRegex.test(loginData.phone)) {
+				message.error('Invalid Phone number');
+				return;
+			}
 			setIsLoading(true);
-			const res = await login({
-				...loginData,
-				phone: '+88' + loginData.phone,
-			}).unwrap();
+			if (loginData.phone.startsWith('0')) {
+			}
+			const res = loginData.phone.startsWith('0')
+				? await login({
+						...loginData,
+						phone: '+88' + loginData.phone,
+					}).unwrap()
+				: await login(loginData).unwrap();
 			if (res.success) {
 				message.success('User logged in successfully');
 				const accessToken = res?.accessToken;
