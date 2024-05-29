@@ -3,7 +3,7 @@ import { Button, Col, Modal, Row, message } from 'antd';
 import Styles from './Login.module.css';
 import login_pic from '@/assets/login.png';
 import Image from 'next/image';
-import { useAppDispatch, useAppSelector } from '@/redux/hooks';
+import { useAppSelector } from '@/redux/hooks';
 import { Input } from 'antd';
 import Link from 'next/link';
 import { useState } from 'react';
@@ -67,17 +67,20 @@ const Login = () => {
 
 	return (
 		<div className={Styles.container}>
-			{isLoading && <h1>Loading</h1>}
 			<Row gutter={[20, 20]} align="middle" justify="center">
-				<Col xs={24} md={12}>
-					<Image
-						src={login_pic}
-						width={50}
-						height={50}
-						alt="login_pic"
-						layout="responsive"
-					/>
-				</Col>
+				{
+					<Col xs={24} md={12}>
+						<div className={Styles.image_container}>
+							<Image
+								src={login_pic}
+								width={50}
+								height={50}
+								alt="login_pic"
+								layout="responsive"
+							/>
+						</div>
+					</Col>
+				}
 				<Col xs={24} md={12}>
 					<div className={Styles.form_container}>
 						<h2 className={Styles.login_heading}>
@@ -88,6 +91,7 @@ const Login = () => {
 								<p>{getLang == 'বাং' ? 'ফোন নাম্বর' : 'Phone number'}</p>
 								<Input
 									value={loginData.phone}
+									disabled={isLoading}
 									placeholder="+8801*********"
 									onChange={(e) => {
 										setLoginData({ ...loginData, phone: e.target.value });
@@ -98,6 +102,8 @@ const Login = () => {
 								<p>{getLang == 'বাং' ? 'পাসওয়ার্ড' : 'Password'}</p>
 								<Input.Password
 									value={loginData.password}
+									style={{ width: '100%' }}
+									disabled={isLoading}
 									onChange={(e) => {
 										setLoginData({ ...loginData, password: e.target.value });
 									}}
@@ -107,8 +113,8 @@ const Login = () => {
 							</div>
 							<div>
 								<Button
+									loading={isLoading}
 									style={{
-										margin: '0 auto',
 										display: 'block',
 										backgroundColor: 'var(--brand-color)',
 									}}

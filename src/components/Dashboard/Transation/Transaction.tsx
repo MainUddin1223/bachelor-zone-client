@@ -4,6 +4,7 @@ import Styles from './Transaction.module.css';
 import { useAppSelector } from '@/redux/hooks';
 import { Table, TableColumnsType } from 'antd';
 import { DataType, TransactionDataType } from '@/type';
+import Loader from '@/components/Loader/Loader';
 
 const Transaction = () => {
 	const screenSize = typeof window !== 'undefined' ? window.innerWidth : 1000;
@@ -11,11 +12,10 @@ const Transaction = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
 	const { data, isLoading } = useGetTransactionHistoryQuery(undefined);
-	if (isLoading) return <></>;
 	const config = {
 		current: data?.meta?.currentPage,
-		pageSize: data?.meta.size,
-		total: data?.meta.totalPage,
+		pageSize: data?.meta?.size,
+		total: data?.meta?.totalPage,
 	};
 	const columns: TableColumnsType<TransactionDataType> = [
 		{
@@ -94,12 +94,16 @@ const Transaction = () => {
 					: 'Your last 10 transactions'}
 			</p>
 			<div>
-				<Table
-					style={{ textAlign: 'center' }}
-					columns={isMobile ? mobileColumns : columns}
-					dataSource={Array.isArray(data.data) ? data.data : []}
-					pagination={config}
-				/>
+				{isLoading ? (
+					<Loader />
+				) : (
+					<Table
+						style={{ textAlign: 'center' }}
+						columns={isMobile ? mobileColumns : columns}
+						dataSource={Array.isArray(data.data) ? data.data : []}
+						pagination={config}
+					/>
+				)}
 			</div>
 		</div>
 	);

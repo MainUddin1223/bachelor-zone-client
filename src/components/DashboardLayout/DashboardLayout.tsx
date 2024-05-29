@@ -1,7 +1,7 @@
 'use client';
 
 import { getAuthInfo } from '@/utils/jwt';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { ReactNode, useEffect, useState } from 'react';
 import Loader from '../Loader/Loader';
 import Header from '../header/Header';
@@ -10,21 +10,18 @@ import NavBar from '../Dashboard/NavBar/NavBar';
 
 const DashboardLayout = ({ children }: { children: ReactNode }) => {
 	const router = useRouter();
+	// const [isLoading, setIsLoading] = useState(true);
+	// useEffect(() => {
+	// 	setTimeout(() => {
+	// 		setIsLoading(false);
+	// 	}, 100);
+	// }, []);
 	const userInfo: any = getAuthInfo();
-	const [isLoading, setIsLoading] = useState(true);
-	useEffect(() => {
-		setTimeout(() => {
-			setIsLoading(false);
-		}, 100);
-	}, []);
-	if (isLoading) return <Loader />;
 	if (!userInfo) {
-		router.push('/login');
-		return;
+		redirect('/login');
 	}
 	if (!userInfo.is_claimed) {
-		router.push('/claim');
-		return;
+		redirect('/claim');
 	}
 	return (
 		<>

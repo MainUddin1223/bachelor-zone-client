@@ -7,6 +7,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { useGetOrderHistoryQuery } from '@/redux/api/userApi';
 import dayjs from 'dayjs';
 import { DataType } from '@/type';
+import Loader from '@/components/Loader/Loader';
 
 const History = () => {
 	const screenSize = typeof window !== 'undefined' ? window.innerWidth : 1000;
@@ -14,11 +15,10 @@ const History = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
 	const { data, isLoading } = useGetOrderHistoryQuery(undefined);
-	if (isLoading) return <></>;
 	const config = {
-		current: data.meta?.currentPage,
-		pageSize: data.meta.size,
-		total: data.meta.totalPage,
+		current: data?.meta?.currentPage,
+		pageSize: data?.meta.size,
+		total: data?.meta.totalPage,
 	};
 	const columns: TableColumnsType<DataType> = [
 		{
@@ -98,12 +98,16 @@ const History = () => {
 						: 'Your consumed meal details for last 30 days'}
 				</p>
 				<div>
-					<Table
-						style={{ textAlign: 'center' }}
-						columns={isMobile ? mobileColumns : columns}
-						dataSource={Array.isArray(data.data) ? data.data : []}
-						pagination={config}
-					/>
+					{isLoading ? (
+						<Loader />
+					) : (
+						<Table
+							style={{ textAlign: 'center' }}
+							columns={isMobile ? mobileColumns : columns}
+							dataSource={Array.isArray(data.data) ? data.data : []}
+							pagination={config}
+						/>
+					)}
 				</div>
 			</div>
 		</div>

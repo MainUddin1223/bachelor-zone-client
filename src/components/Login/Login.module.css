@@ -4,6 +4,7 @@
 	margin: 20px auto;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 .login_heading {
 	text-align: center;
@@ -17,11 +18,12 @@
 	padding: 5px 0;
 }
 .input_container p {
-	padding: 5px 0;
+	margin-bottom: 5px;
 }
 .login_btn {
 	display: block;
-	margin: 5px auto;
+	margin-top: 15px;
+	margin: 10px auto;
 	background-color: var(--brand-color);
 }
 .contact_link {
@@ -31,9 +33,17 @@
 	font-weight: 500;
 }
 /* Smartphone */
-@media (max-width: 576px) {
+@media (max-width: 768px) {
+	.form_container {
+		width: 100%;
+		margin: 0 auto;
+	}
+	.image_container {
+		display: none;
+	}
 	.container {
 		width: 90%;
+		min-height: 70vh;
 	}
 }
 

@@ -6,7 +6,7 @@ import Profile from './Profile/Profile';
 import Header from '../header/Header';
 import Footer from '../Footer/Footer';
 import Loader from '../Loader/Loader';
-import { useRouter } from 'next/navigation';
+import { useRouter, redirect } from 'next/navigation';
 import { getAuthInfo } from '@/utils/jwt';
 import NavBar from './NavBar/NavBar';
 import DashboardLayout from '../DashboardLayout/DashboardLayout';

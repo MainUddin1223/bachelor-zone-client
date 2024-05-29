@@ -11,6 +11,7 @@ import { useRouter } from 'next/navigation';
 
 const Register = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
+	const [isLoading, setIsLoading] = useState(false);
 	const [signUpData, setSignUpData] = useState({
 		name: '',
 		phone: '',
@@ -22,13 +23,16 @@ const Register = () => {
 	const [signUp] = useSignUpMutation();
 
 	const handleSignUp = async () => {
+		setIsLoading(true);
 		const phoneRegex = /^(01|\+8801)\d{9}$/;
 		if (!phoneRegex.test(signUpData.phone)) {
 			message.error('Invalid Phone number');
+			setIsLoading(false);
 			return;
 		}
 		if (signUpData.password !== signUpData.confirmPassword) {
 			message.error('Password and confirm password not matched');
+			setIsLoading(false);
 			return;
 		}
 		const result: any = signUpData.phone.startsWith('0')
@@ -38,9 +42,11 @@ const Register = () => {
 				})
 			: signUp(signUpData);
 		if (result.data.success == false) {
+			setIsLoading(false);
 			message.error(result.data.message);
 		} else {
 			message.success('Sign up successful');
+			setIsLoading(false);
 			router.push('/claim');
 			setSignUpData({
 				name: '',
@@ -57,14 +63,16 @@ const Register = () => {
 	return (
 		<div className={Styles.container}>
 			<Row gutter={[20, 20]} align="middle" justify="center">
-				<Col xs={24} md={12} className={Styles.register_img_container}>
-					<Image
-						src={register_img}
-						width={50}
-						height={50}
-						alt="login_pic"
-						layout="responsive"
-					/>
+				<Col xs={24} md={12}>
+					<div className={Styles.image_container}>
+						<Image
+							src={register_img}
+							width={50}
+							height={50}
+							alt="login_pic"
+							layout="responsive"
+						/>
+					</div>
 				</Col>
 				<Col xs={24} md={12}>
 					<div className={Styles.form_container}>
@@ -124,6 +132,7 @@ const Register = () => {
 							</div>
 							<div>
 								<Button
+									loading={isLoading}
 									onClick={handleSignUp}
 									disabled={
 										signUpData.phone.length == 11 ||
@@ -141,7 +150,7 @@ const Register = () => {
 											: true
 									}
 									style={{
-										margin: '0 auto',
+										margin: '10px auto',
 										display: 'block',
 										backgroundColor: 'var(--brand-color)',
 									}}

@@ -4,6 +4,7 @@
 	margin: 20px auto;
 	display: flex;
 	align-items: center;
+	justify-content: center;
 }
 .login_heading {
 	text-align: center;
@@ -16,9 +17,6 @@
 .input_container {
 	padding: 5px 0;
 }
-.input_container p {
-	padding: 5px 0;
-}
 
 .contact_link {
 	cursor: pointer;
@@ -28,16 +26,25 @@
 }
 .register_btn {
 	display: block;
-	margin: 5px auto;
+	margin: 10px auto;
 	background-color: var(--brand-color);
 }
+.input_container p {
+	margin-bottom: 5px;
+}
 /* Smartphone */
-@media (max-width: 576px) {
-	.container {
-		width: 90%;
+@media (max-width: 768px) {
+	.form_container {
+		width: 100%;
+		margin: 0 auto;
 	}
-	.register_img_container {
+	.image_container {
 		display: none;
+	}
+	.container {
+		width: 70%;
+		min-height: 70vh;
+		justify-content: center;
 	}
 }
 
