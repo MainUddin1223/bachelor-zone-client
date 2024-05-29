@@ -54,6 +54,13 @@ const userApi = baseApi.injectEndpoints({
 			}),
 			providesTags: ['user'],
 		}),
+		getTeamDetails: build.query({
+			query: () => ({
+				url: `${userUrl}/team-details`,
+				method: 'GET',
+			}),
+			providesTags: ['user'],
+		}),
 	}),
 });
 
@@ -65,4 +72,5 @@ export const {
 	useCancelOrderMutation,
 	useConfirmOrderMutation,
 	useGetTransactionHistoryQuery,
+	useGetTeamDetailsQuery,
 } = userApi;
