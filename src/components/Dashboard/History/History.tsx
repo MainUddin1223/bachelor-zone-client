@@ -1,5 +1,5 @@
 'use client';
-import { DatePicker, Table } from 'antd';
+import { Card, DatePicker, Table } from 'antd';
 import type { DatePickerProps, TableColumnsType } from 'antd';
 
 import Styles from './History.module.css';
@@ -85,30 +85,76 @@ const History = () => {
 			},
 		},
 	];
+	const orderStatics = data?.data?.orderData;
 	return (
 		<div>
 			<div>
 				<h3 className={Styles.history_header}>
-					{getLang === 'বাং' ? 'গ্রহনকৃত খাবারের তালিকা' : 'Meals History'}
+					{getLang === 'বাং' ? 'গ্রহনকৃত খাবার' : 'Meals History'}
 				</h3>
-				<p className={Styles.history_info}>
-					{' '}
-					{getLang === 'বাং'
-						? `গত 30 দিনের গ্রহনকৃত খাবারের বিস্তারিত ।`
-						: 'Your consumed meal details for last 30 days'}
-				</p>
-				<div>
-					{isLoading ? (
-						<Loader />
-					) : (
-						<Table
-							style={{ textAlign: 'center' }}
-							columns={isMobile ? mobileColumns : columns}
-							dataSource={Array.isArray(data.data) ? data.data : []}
-							pagination={config}
-						/>
-					)}
-				</div>
+				{isLoading ? (
+					<Loader />
+				) : (
+					<div>
+						<Card>
+							<h3>
+								{getLang === 'বাং'
+									? `${dayjs(Date.now()).format('DD-MM-YYYY')} পর্যন্ত খাবারের পরিসংখ্যান`
+									: `Your Order statics till ${dayjs(Date.now()).format('DD-MM-YYYY')}`}
+							</h3>
+							{getLang === 'বাং' ? (
+								<div>
+									<p>
+										মোট অর্ডার : <b>{orderStatics?.totalCount} টি</b>
+									</p>
+									<p>
+										গ্রহনকৃত অর্ডার :<b>{orderStatics?.deliveredOrder} টি</b>{' '}
+									</p>
+									<p>
+										বাতিলকৃত অর্ডার : <b>{orderStatics?.canceledOrder} টি</b>
+									</p>
+									<p>
+										গ্রহন করা হয়নি এমন অর্ডার :{' '}
+										<b>{orderStatics?.notReceived} টি</b>
+									</p>
+								</div>
+							) : (
+								<div>
+									<p>
+										Total Order : <b>{orderStatics?.totalCount}</b>
+									</p>
+									<p>
+										Received Order :<b>{orderStatics?.deliveredOrder} </b>{' '}
+									</p>
+									<p>
+										Canceled Order : <b>{orderStatics?.canceledOrder} </b>
+									</p>
+									<p>
+										Not Received : <b>{orderStatics?.notReceived} </b>
+									</p>
+								</div>
+							)}
+						</Card>
+						<p className={Styles.history_info}>
+							{' '}
+							{getLang === 'বাং'
+								? ` গ্রহনকৃত খাবারের বিস্তারিত ।`
+								: 'Your consumed meal details'}
+						</p>
+						<div>
+							<Table
+								style={{ textAlign: 'center' }}
+								columns={isMobile ? mobileColumns : columns}
+								dataSource={
+									Array.isArray(data?.data?.orderHistory)
+										? data.data?.orderHistory
+										: []
+								}
+								pagination={config}
+							/>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);

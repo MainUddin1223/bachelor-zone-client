@@ -35,15 +35,28 @@
 	flex-direction: column;
 	gap: 15px;
 }
+.avatar_container_mobile {
+	display: none;
+}
 @media (max-width: 991px) {
 	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
 	.setting {
 		visibility: hidden;
 	}
 }
+
 /* Smartphone */
 @media (max-width: 576px) {
 	.container {
 		width: 100%;
+	}
+	.avatar_container_desktop {
+		display: none;
+	}
+	.avatar_container_mobile {
+		display: block;
+	}
+	.profile_container {
+		display: block;
 	}
 }

@@ -150,9 +150,25 @@ const Profile = () => {
 					) : (
 						<div>
 							<div className={Styles.profile_container}>
-								<div>
+								<div className={Styles.avatar_container_desktop}>
 									<Avatar
 										shape="square"
+										gap={5}
+										size={110}
+										icon={
+											<Image
+												src={profile_img}
+												alt="profile_img"
+												width={100}
+												layout="responsive"
+											/>
+										}
+									/>
+								</div>
+								<div className={Styles.avatar_container_mobile}>
+									<Avatar
+										style={{ display: 'block', margin: '5px auto' }}
+										shape="circle"
 										gap={5}
 										size={110}
 										icon={

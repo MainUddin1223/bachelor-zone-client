@@ -1,3 +1,5 @@
 export const getBaseUrl = (): string => {
-	return process.env.BASE_URL || 'localhost:8000/api/v1';
+	return (
+		process.env.BASE_URL || 'https://bachelor-zone-server.vercel.app/api/v1'
+	);
 };
