@@ -38,6 +38,23 @@
 .avatar_container_mobile {
 	display: none;
 }
+.info {
+	display: flex;
+	align-items: center;
+	gap: 5px;
+	font-weight: 500;
+	cursor: pointer;
+	color: var(--primary-color);
+}
+.expenses_info {
+	padding: 5px 15px;
+}
+.expenses_info h3 {
+	padding: 5px 0;
+}
+.expenses p {
+	padding: 5px 0;
+}
 @media (max-width: 991px) {
 	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
 	.setting {

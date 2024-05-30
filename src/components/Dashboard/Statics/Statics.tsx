@@ -13,46 +13,50 @@ const Statics = ({ info }: { info: any }) => {
 		<div className={Styles.container}>
 			<div className={Styles.info_container}>
 				<h4>
-					{getLang === 'বাং' ? 'ব্যলেন্স' : 'Balance'}: ৳ {info?.balance}
+					{getLang === 'বাং' ? 'টিম' : 'Team Name'} : {info?.team}
 				</h4>
-				<Tooltip
-					placement="bottomRight"
-					title={
-						<div className={Styles.expenses_info}>
-							<h3>{getLang === 'বাং' ? 'যাবতীয় খরচ' : 'Expenses Details'} </h3>
-							<div className={Styles.expenses}>
-								<p>
-									{getLang === 'বাং'
-										? `খাবার বিল : ৳ ${costing.mealCost}`
-										: `Meal cost : ৳ ${costing.mealCost}`}{' '}
-								</p>
-								<p>
-									{getLang === 'বাং' ? 'ডেলিভারি ফি' : 'Delivery Fee'} : ৳{' '}
-									{costing.deliveryFee}
-								</p>
-								<p>
-									{getLang === 'বাং' ? 'প্ল্যাটফর্ম ফি' : 'Platform fee'} : ৳{' '}
-									{costing.platformFee}
-								</p>
+				<div>
+					<Tooltip
+						placement="bottomRight"
+						title={
+							<div className={Styles.expenses_info}>
+								<h3>{getLang === 'বাং' ? 'সদস্যের ডাটা' : 'Member info'} </h3>
+								<div className={Styles.expenses}>
+									{info?.memberInfo.map((member: any, index: number) => (
+										<div key={index} style={{ margin: '5px 0' }}>
+											<h5>
+												{getLang === 'বাং' ? 'নাম' : 'Name'} :{' '}
+												{member?.user?.name}
+											</h5>
+											<h5>
+												{getLang === 'বাং' ? 'ফোন নাম্বার' : 'Phone'} :{' '}
+												{member?.user?.phone}
+											</h5>
+											<hr style={{ marginTop: '5px' }} />
+										</div>
+									))}
+								</div>
 							</div>
-						</div>
-					}
-					trigger="click"
-					defaultOpen={false}
-				>
-					<p className={Styles.info}>
-						<span>{getLang === 'বাং' ? 'খরচ' : 'Cost'}</span>{' '}
-						<span>
-							<InfoCircleOutlined />
-						</span>
-					</p>
-				</Tooltip>
+						}
+						trigger="click"
+						defaultOpen={false}
+					>
+						<p className={Styles.info}>
+							<span>{getLang === 'বাং' ? 'টিমের সদস্য' : 'Team info'}</span>{' '}
+							<span>
+								<InfoCircleOutlined />
+							</span>
+						</p>
+					</Tooltip>
+				</div>
 			</div>
-			<h4>
-				{getLang === 'বাং' ? 'টিম' : 'Team Name'} : {info?.team}
-			</h4>
+
 			<h4>
 				{getLang === 'বাং' ? 'টিম লিডার' : 'Team Leader'} :{info?.teamLeader}{' '}
+			</h4>
+			<h4>
+				{getLang === 'বাং' ? 'টিমের সদস্য' : 'Total member'} :{' '}
+				{info?.totalMembers}{' '}
 			</h4>
 			<h4>
 				{getLang === 'বাং' ? 'লিডার ফোন' : 'Leader Phone'} : {info?.leaderPhone}{' '}
