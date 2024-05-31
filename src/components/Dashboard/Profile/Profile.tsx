@@ -193,14 +193,14 @@ const Profile = () => {
 									</h4>
 									<div
 										style={{
+											width: '100%',
 											display: 'flex',
 											justifyContent: 'space-between',
 											alignItems: 'center',
 										}}
 									>
 										<h4 style={{ margin: '5px 0' }}>
-											{getLang === 'বাং' ? 'আজকের অর্ডার' : 'Order for the day'}{' '}
-											:{' '}
+											{getLang === 'বাং' ? 'আজকের অর্ডার' : `Today's Order`} :{' '}
 											{data?.order[0] ? (
 												data?.order[0]?.status == 'received' ? (
 													<span style={{ color: 'gray' }}>
@@ -208,18 +208,22 @@ const Profile = () => {
 															? 'অর্ডার গ্রহন করেছেন'
 															: 'Order received'}
 													</span>
+												) : data?.order[0]?.status == 'canceled' ? (
+													<span style={{ color: 'red' }}>
+														{getLang === 'বাং'
+															? 'অর্ডার বাতিল করেছেন'
+															: 'Order Canceled'}
+													</span>
 												) : (
 													<span style={{ color: 'green' }}>
 														{getLang === 'বাং'
-															? 'আপনার আজকে অর্ডার রয়েছে'
+															? 'আপনার অর্ডার রয়েছে'
 															: 'Order Pending'}
 													</span>
 												)
 											) : (
 												<span style={{ color: 'red' }}>
-													{getLang === 'বাং'
-														? 'আপনার আজকে অর্ডার নেই'
-														: 'No Order for today'}
+													{getLang === 'বাং' ? 'আপনার অর্ডার নেই' : 'No Order'}
 												</span>
 											)}
 										</h4>

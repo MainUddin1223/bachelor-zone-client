@@ -41,6 +41,7 @@
 .info {
 	display: flex;
 	align-items: center;
+	margin-left: 5px;
 	gap: 5px;
 	font-weight: 500;
 	cursor: pointer;
@@ -75,5 +76,8 @@
 	}
 	.profile_container {
 		display: block;
+	}
+	.profile_info_container {
+		padding-left: 0px;
 	}
 }
