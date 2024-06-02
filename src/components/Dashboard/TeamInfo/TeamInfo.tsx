@@ -7,23 +7,41 @@ const TeamInfo = ({ teamInfo }: { teamInfo: any }) => {
 	const router = useRouter();
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
-	const { name, member, due_boxes, order } = teamInfo;
+	const { name, member, due_boxes, order, orderStatus } = teamInfo;
 	return (
 		<div className={Styles.container}>
-			<h2 className={Styles.info}>
+			<h3 className={Styles.info}>
 				{' '}
 				{getLang === 'বাং' ? 'টিম' : 'Team'} : {name}
-			</h2>
-			<h3 className={Styles.info}>
+			</h3>
+			<h4 className={Styles.info}>
 				{getLang === 'বাং' ? 'মোট সদস্য' : 'Total Member'} : {member}
-			</h3>
-			<h3 className={Styles.info}>
+			</h4>
+			<h4 className={Styles.info}>
 				{getLang === 'বাং' ? 'আজকের অর্ডার' : `Today's Order`} : {order}
-			</h3>
-			<h3 className={Styles.info}>
+			</h4>
+			<h4 className={Styles.info}>
+				{getLang === 'বাং' ? (
+					<span>
+						`অর্ডারের অবস্থান :{' '}
+						{orderStatus == 'pending' ? (
+							<span style={{ color: 'green' }}>অর্ডার রয়েছে</span>
+						) : (
+							<span style={{ color: 'gray' }}>অর্ডার গ্রহন করেছেন</span>
+						)}
+						`
+					</span>
+				) : (
+					`Order Status : ${orderStatus == 'pending' ? 'Pending' : 'Delivered'}`
+				)}
+			</h4>
+			<h4 className={Styles.info}>
 				{getLang === 'বাং' ? 'বাকী টিফিন' : 'Due Boxes'} : {due_boxes}
-			</h3>
-			<Button onClick={() => router.push('/dashboard/team')}>
+			</h4>
+			<Button
+				style={{ marginTop: '5px' }}
+				onClick={() => router.push('/dashboard/team')}
+			>
 				{getLang === 'বাং' ? 'বিস্তারিত জানুন' : 'Team details'}
 			</Button>
 		</div>

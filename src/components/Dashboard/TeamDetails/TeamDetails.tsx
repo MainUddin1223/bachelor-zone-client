@@ -6,7 +6,7 @@ import Loader from '@/components/Loader/Loader';
 import { useGetTeamDetailsQuery } from '@/redux/api/userApi';
 import { useAppSelector } from '@/redux/hooks';
 import { IMemberDataType, IOrderDataType, IOrderList } from '@/type';
-import { Card, Col, Row, Table, TableColumnsType } from 'antd';
+import { Button, Card, Col, Row, Table, TableColumnsType } from 'antd';
 
 const TeamDetails = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
@@ -18,20 +18,23 @@ const TeamDetails = () => {
 	const userColumns: TableColumnsType<IMemberDataType> = [
 		{
 			title: (
-				<h4 style={{ paddingLeft: '10px' }}>
+				<h3 style={{ paddingLeft: '10px' }}>
 					{getLang === 'বাং' ? 'সদস্যদের ডাটা' : 'Members Info'}
-				</h4>
+				</h3>
 			),
 			dataIndex: '',
 			render: (_: any, details: IMemberDataType) => {
 				return (
-					<div style={{ paddingLeft: '10px' }}>
-						<h5>
+					<div
+						className={Styles.card_container}
+						style={{ paddingLeft: '10px' }}
+					>
+						<h4>
 							{getLang === 'বাং' ? 'নাম' : 'Name'} : {details?.user?.name}
-						</h5>
-						<h5>
+						</h4>
+						<h4>
 							{getLang === 'বাং' ? 'মোবাইল' : 'Phone'} : {details?.user?.phone}
-						</h5>
+						</h4>
 					</div>
 				);
 			},
@@ -40,38 +43,52 @@ const TeamDetails = () => {
 	const orderColumn: TableColumnsType<IOrderDataType> = [
 		{
 			title: (
-				<h4 style={{ paddingLeft: '10px' }}>
+				<h3 style={{ paddingLeft: '10px' }}>
 					{getLang === 'বাং' ? 'অর্ডারের বিস্তারিত' : 'Order Info'}
-				</h4>
+				</h3>
 			),
 			dataIndex: '',
 			render: (_: any, details: IOrderDataType) => {
 				return (
-					<div style={{ paddingLeft: '10px' }}>
-						<h5 style={{ color: 'var(--primary-color)' }}>
+					<div
+						className={Styles.card_container}
+						style={{ paddingLeft: '10px' }}
+					>
+						<h4 style={{ color: 'var(--primary-color)' }}>
 							{getLang === 'বাং' ? 'ডেলিভারি তারিখ' : 'Delivery Date'} :{' '}
 							{details?.delivery_date}
-						</h5>
-						<h5>
+						</h4>
+						<h4>
 							{getLang === 'বাং' ? 'মোট অর্ডার' : 'Total Order'} :{' '}
 							{details?.order_count}
-						</h5>
-						<hr style={{ width: '30%', margin: '10px 0' }} />
+						</h4>
+						<Button disabled>
+							{details?.pendingOrder > 0 ? (
+								<span style={{ color: 'red' }}>
+									{getLang === 'বাং' ? 'ডেলিভারি রয়েছে' : ' Pending'}
+								</span>
+							) : (
+								<span style={{ color: 'green' }}>
+									{getLang === 'বাং' ? 'ডেলিভারি হয়েছে' : ' Delivered'}
+								</span>
+							)}
+						</Button>
+						<hr style={{ width: '100%', margin: '20px 0' }} />
 						<div>
-							<h4 style={{ marginBottom: '8px' }}>
+							<h3 style={{ marginBottom: '8px' }}>
 								{getLang === 'বাং' ? 'যারা অর্ডার করেছেন' : 'Orderers'}
-							</h4>
+							</h3>
 							{details.orderList.map((order: IOrderList, index: number) => (
 								<div key={index}>
-									<h6 style={{ padding: '5px 0' }}>
+									<h4 style={{ padding: '5px 0' }}>
 										{getLang === 'বাং' ? 'নাম' : 'User Name'} :{' '}
 										{order.user_name}
-									</h6>
-									<h6 style={{ padding: '5px 0' }}>
+									</h4>
+									<h4 style={{ padding: '5px 0' }}>
 										{getLang === 'বাং' ? 'মোবাইল' : 'User Phone'} :{' '}
 										{order?.user_phone}
-									</h6>
-									<hr style={{ width: '30%', margin: '5px 0' }} />
+									</h4>
+									<hr style={{ width: '75%', margin: '5px 0' }} />
 								</div>
 							))}
 						</div>
@@ -91,25 +108,26 @@ const TeamDetails = () => {
 				<Row gutter={[20, 20]}>
 					<Col xs={24} lg={12}>
 						<Card
+							className={Styles.card_container}
 							style={{ padding: '0' }}
 							title={getLang === 'বাং' ? 'টিম ডাটা' : 'Team Info'}
 						>
-							<h5>
+							<h4>
 								{getLang === 'বাং' ? 'টিমের নাম' : 'Team Name'} :{' '}
 								{teamDetails?.name}
-							</h5>
-							<h5>
+							</h4>
+							<h4>
 								{getLang === 'বাং' ? 'ঠিকানা' : 'Team Address'} :{' '}
 								{teamDetails?.address?.address}
-							</h5>
-							<h5>
+							</h4>
+							<h4>
 								{getLang === 'বাং' ? 'টিম লিডার' : 'Leader Name '}:{' '}
 								{teamDetails?.leader?.name}
-							</h5>
-							<h5>
+							</h4>
+							<h4>
 								{getLang === 'বাং' ? 'মোট সদস্য' : 'Total Member'} :{' '}
 								{teamDetails?.member}
-							</h5>
+							</h4>
 						</Card>
 					</Col>
 					<Col xs={24} lg={12}>

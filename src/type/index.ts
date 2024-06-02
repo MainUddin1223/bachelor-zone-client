@@ -33,6 +33,7 @@ export interface IOrderDataType {
 	id: number;
 	delivery_date: string;
 	order_count: number;
+	pendingOrder: number;
 	status: string;
 	orderList: IOrderList[];
 }

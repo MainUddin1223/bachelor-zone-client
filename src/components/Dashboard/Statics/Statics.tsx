@@ -7,6 +7,7 @@ import { useAppSelector } from '@/redux/hooks';
 import { costing } from '@/utils/cost';
 
 const Statics = ({ info }: { info: any }) => {
+	console.log(info);
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
 	return (
@@ -51,6 +52,14 @@ const Statics = ({ info }: { info: any }) => {
 				</div>
 			</div>
 
+			<h4>
+				{getLang === 'বাং' ? 'সাপ্লায়ারের নাম' : 'Supplier Name'} :{' '}
+				{info?.supplier?.name}{' '}
+			</h4>
+			<h4>
+				{getLang === 'বাং' ? 'সাপ্লায়ারের ফোন' : 'Supplier Phone'} :{' '}
+				{info?.supplier?.contact_no}{' '}
+			</h4>
 			<h4>
 				{getLang === 'বাং' ? 'টিম লিডার' : 'Team Leader'} :{info?.teamLeader}{' '}
 			</h4>
