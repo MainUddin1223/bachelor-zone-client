@@ -8,11 +8,11 @@ import { Input } from 'antd';
 import Link from 'next/link';
 import { useState } from 'react';
 import { useLoginMutation } from '@/redux/api/authApi';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 import { getAuthInfo } from '@/utils/jwt';
 
 const Login = () => {
-	const userInfo = getAuthInfo();
+	const userInfo: any = getAuthInfo();
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
 	const router = useRouter();
@@ -22,9 +22,12 @@ const Login = () => {
 		phone: '',
 		password: '',
 	});
-
 	if (userInfo) {
-		router.push('/dashboard');
+		if (userInfo?.is_claimed == false) {
+			router.push(`/claim`);
+		} else {
+			router.push(`/user`);
+		}
 	}
 
 	const handleLogin = async () => {
@@ -48,7 +51,13 @@ const Login = () => {
 				const accessToken = res?.accessToken;
 				typeof window !== 'undefined' &&
 					localStorage.setItem('accessToken', accessToken);
-				router.push(`/dashboard`);
+
+				const userInfo: any = getAuthInfo();
+				if (userInfo?.is_claimed == false) {
+					router.push('/claim');
+				} else {
+					router.push(`/user`);
+				}
 				setIsLoading(false);
 			} else {
 				setIsLoading(false);

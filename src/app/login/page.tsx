@@ -1,11 +1,11 @@
 import Footer from '@/components/Footer/Footer';
-import Header from '@/components/header/Header';
+import PublicHeader from '@/components/Headers/PublicHeader/PublicHeader';
 import Login from '@/components/Login/Login';
 
 const LoginPage = () => {
 	return (
 		<>
-			<Header />
+			<PublicHeader />
 			<Login />
 			<Footer />
 		</>

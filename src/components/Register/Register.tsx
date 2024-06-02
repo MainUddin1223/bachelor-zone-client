@@ -8,10 +8,12 @@ import Link from 'next/link';
 import { useState } from 'react';
 import { useSignUpMutation } from '@/redux/api/authApi';
 import { useRouter } from 'next/navigation';
+import { getAuthInfo } from '@/utils/jwt';
 
 const Register = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const [isLoading, setIsLoading] = useState(false);
+	const userInfo: any = getAuthInfo();
 	const [signUpData, setSignUpData] = useState({
 		name: '',
 		phone: '',
@@ -21,6 +23,13 @@ const Register = () => {
 	const getLang = basicData.lang;
 	const router = useRouter();
 	const [signUp] = useSignUpMutation();
+	if (userInfo) {
+		if (userInfo?.is_claimed == false) {
+			router.push(`/claim`);
+		} else {
+			router.push(`/user`);
+		}
+	}
 
 	const handleSignUp = async () => {
 		setIsLoading(true);

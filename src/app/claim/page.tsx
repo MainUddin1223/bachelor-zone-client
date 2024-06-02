@@ -2,12 +2,12 @@
 
 import ClaimUser from '@/components/ClaimUser/ClaimUser';
 import Footer from '@/components/Footer/Footer';
-import Header from '@/components/header/Header';
+import PublicHeader from '@/components/Headers/PublicHeader/PublicHeader';
 
 const page = () => {
 	return (
 		<>
-			<Header />
+			<PublicHeader />
 			<ClaimUser />
 			<Footer />
 		</>
