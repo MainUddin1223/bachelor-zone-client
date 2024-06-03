@@ -88,8 +88,14 @@ const PublicNavbar = () => {
 					</Link>
 				) : userInfo ? (
 					<>
-						<HomeOutlined onClick={handleHomeBtn} />
-						<LogoutOutlined onClick={handleLogout} />
+						<HomeOutlined
+							onClick={handleHomeBtn}
+							style={{ fontSize: '21px' }}
+						/>
+						<LogoutOutlined
+							onClick={handleLogout}
+							style={{ fontSize: '21px' }}
+						/>
 					</>
 				) : (
 					<></>

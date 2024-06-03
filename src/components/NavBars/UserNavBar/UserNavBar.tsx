@@ -1,21 +1,12 @@
 'use client';
 import Styles from './UserNavBar.module.css';
-import {
-	Button,
-	ConfigProvider,
-	Drawer,
-	Input,
-	Modal,
-	Switch,
-	message,
-} from 'antd';
+import { ConfigProvider, Drawer, Input, Modal, Switch, message } from 'antd';
 import { getFromLocalStorage, setToLocalStorage } from '@/utils/local-storage';
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
 import { addBasicData } from '@/redux/slice/basicSlice';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 import { usePathname, useRouter } from 'next/navigation';
-import { getAuthInfo } from '@/utils/jwt';
 import {
 	CloseCircleOutlined,
 	LogoutOutlined,

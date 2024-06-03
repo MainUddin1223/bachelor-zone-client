@@ -31,7 +31,7 @@ const Pricing = () => {
 				</span>
 				<span>
 					সার্ভিস ফি
-					<span className={Styles.price}> ৳ {costing.deliveryFee}</span>
+					<span className={Styles.price}> ৳ {costing.platformFee}</span>
 				</span>
 			</p>
 		) : (

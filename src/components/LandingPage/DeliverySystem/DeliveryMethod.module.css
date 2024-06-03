@@ -1,0 +1,59 @@
+.container {
+	width: 80%;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+.header {
+	text-align: center;
+	padding: 20px;
+}
+.delivery_terms_container {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.condition_container {
+	flex: 1;
+}
+.condition_container h2 {
+	margin-bottom: 15px;
+}
+.condition_title {
+	margin: 15px 0;
+	font-size: 20px;
+	font-weight: 600;
+}
+.condition_container p {
+	margin: 15px 0;
+	font-size: 18px;
+	font-weight: 500;
+}
+.img_container {
+	flex: 1;
+}
+.approval_img {
+	width: 150px;
+	height: 150px;
+}
+/* Smartphone */
+@media (max-width: 576px) {
+	.container {
+		width: 90%;
+	}
+}
+/* Tablet */
+@media (max-width: 991px) {
+	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
+	.delivery_terms_container {
+		display: flex;
+		flex-direction: column-reverse;
+	}
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+	/* CSS rules for screens wider than 1200px (e.g., large desktops) */
+	.container {
+		width: 1000px;
+	}
+}
