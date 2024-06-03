@@ -1,7 +1,7 @@
 export const costing = {
-	mealCost: 55,
+	mealCost: 65,
 	deliveryFee: 15,
-	platformFee: 5,
+	platformFee: 10,
 	tiffinBoxFee: 200,
 	registrationFee: 25,
 	minimumRecharge: 275,

@@ -2,6 +2,7 @@
 import { Col, Row } from 'antd';
 import Styles from './Pricing.module.css';
 import { useAppSelector } from '@/redux/hooks';
+import { costing } from '@/utils/cost';
 const Pricing = () => {
 	const { basicData } = useAppSelector((state) => state.basicSlice);
 	const getLang = basicData.lang;
@@ -20,22 +21,31 @@ const Pricing = () => {
 		getLang == 'বাং' ? (
 			<p className={Styles.price_tag}>
 				<span>
-					খাবার <span className={Styles.price}>৳৫৫ </span> জনপ্রতি
+					খাবার <span className={Styles.price}>৳ {costing.mealCost} </span>{' '}
+					জনপ্রতি
 				</span>{' '}
 				+
 				<span>
-					ডেলিভারি ফি <span className={Styles.price}> ৳১৫</span> +{' '}
+					ডেলিভারি ফি{' '}
+					<span className={Styles.price}> ৳ {costing.deliveryFee}</span> +{' '}
 				</span>
 				<span>
-					সার্ভিস ফি<span className={Styles.price}> ৳৫ </span>
+					সার্ভিস ফি
+					<span className={Styles.price}> ৳ {costing.deliveryFee}</span>
 				</span>
 			</p>
 		) : (
 			<p className={Styles.price_tag}>
 				{' '}
-				<span className={Styles.price}>Lunch ৳55/ meal + </span>
-				<span className={Styles.price}>Delivery fee ৳15 + </span>
-				<span className={Styles.price}>Service Fee ৳5</span>
+				<span className={Styles.price}>
+					Lunch ৳ {costing.mealCost}/ meal +{' '}
+				</span>
+				<span className={Styles.price}>
+					Delivery fee ৳ {costing.deliveryFee} +{' '}
+				</span>
+				<span className={Styles.price}>
+					Service Fee ৳ {costing.platformFee}
+				</span>
 			</p>
 		);
 
