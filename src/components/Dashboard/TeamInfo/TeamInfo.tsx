@@ -23,7 +23,7 @@ const TeamInfo = ({ teamInfo }: { teamInfo: any }) => {
 			<h4 className={Styles.info}>
 				{getLang === 'বাং' ? (
 					<span>
-						`অর্ডারের অবস্থান :{' '}
+						অর্ডারের অবস্থান :{' '}
 						{orderStatus == 'pending' ? (
 							<span style={{ color: 'green' }}>অর্ডার রয়েছে</span>
 						) : (
@@ -40,7 +40,7 @@ const TeamInfo = ({ teamInfo }: { teamInfo: any }) => {
 			</h4>
 			<Button
 				style={{ marginTop: '5px' }}
-				onClick={() => router.push('/dashboard/team')}
+				onClick={() => router.push('/user/team')}
 			>
 				{getLang === 'বাং' ? 'বিস্তারিত জানুন' : 'Team details'}
 			</Button>

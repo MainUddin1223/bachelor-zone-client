@@ -195,6 +195,7 @@ const Profile = () => {
 										style={{
 											width: '100%',
 											display: 'flex',
+											gap: '25px',
 											justifyContent: 'space-between',
 											alignItems: 'center',
 										}}

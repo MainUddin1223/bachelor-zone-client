@@ -9,7 +9,6 @@ import Loader from '../Loader/Loader';
 import { useRouter, redirect } from 'next/navigation';
 import { getAuthInfo } from '@/utils/jwt';
 import NavBar from './NavBar/NavBar';
-import DashboardLayout from '../DashboardLayout/DashboardLayout';
 
 const Dashboard = () => {
 	return (

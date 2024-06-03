@@ -64,11 +64,11 @@ const Statics = ({ info }: { info: any }) => {
 				{getLang === 'বাং' ? 'টিম লিডার' : 'Team Leader'} :{info?.teamLeader}{' '}
 			</h4>
 			<h4>
-				{getLang === 'বাং' ? 'টিমের সদস্য' : 'Total member'} :{' '}
-				{info?.totalMembers}{' '}
+				{getLang === 'বাং' ? 'লিডার ফোন' : 'Leader Phone'} : {info?.leaderPhone}{' '}
 			</h4>
 			<h4>
-				{getLang === 'বাং' ? 'লিডার ফোন' : 'Leader Phone'} : {info?.leaderPhone}{' '}
+				{getLang === 'বাং' ? 'টিমের সদস্য' : 'Total member'} :{' '}
+				{info?.totalMembers}{' '}
 			</h4>
 		</div>
 	);

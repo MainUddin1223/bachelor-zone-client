@@ -41,7 +41,7 @@ const Order = () => {
 		setConfirmLoading(false);
 		if (result.success) {
 			message.success('Order placed successfully');
-			router.push('/dashboard/orders');
+			router.push('/user/orders');
 		} else {
 			message.error(result.errorMessages);
 		}

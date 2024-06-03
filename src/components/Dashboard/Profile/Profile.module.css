@@ -12,11 +12,12 @@
 .profile_container {
 	display: flex;
 	align-items: center;
+	padding: 10px;
 }
 .setting {
 	position: absolute;
 	top: 20px;
-	right: 20px;
+	right: 30px;
 	font-size: 21px;
 	cursor: pointer;
 }

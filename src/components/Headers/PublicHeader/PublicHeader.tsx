@@ -20,7 +20,7 @@ const PublicHeader = () => {
 				<Flex justify="space-between" align="center">
 					<div>
 						<h1 className={Styles.text_logo} onClick={() => router.push('/')}>
-							Bachelor Zone
+							LUNCH TIME
 						</h1>
 					</div>
 					<div>

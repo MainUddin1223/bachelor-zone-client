@@ -1,0 +1,31 @@
+.container {
+	min-height: 70vh;
+	width: 80%;
+	margin: 15px auto;
+}
+
+/* Smartphone */
+@media (max-width: 576px) {
+	.container {
+		width: 90%;
+	}
+}
+
+/* Tablet */
+@media (min-width: 577px) and (max-width: 767px) {
+	.container {
+		width: 90%;
+	}
+}
+/* Tablet */
+@media (max-width: 991px) {
+	/* CSS rules for screens between 577px and 992px wide (e.g., tablets) */
+}
+
+/* Large desktop */
+@media (min-width: 1200px) {
+	/* CSS rules for screens wider than 1200px (e.g., large desktops) */
+	.container {
+		width: 1000px;
+	}
+}

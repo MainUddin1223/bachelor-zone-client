@@ -18,6 +18,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { getAuthInfo } from '@/utils/jwt';
 import {
 	CloseCircleOutlined,
+	LogoutOutlined,
 	MenuOutlined,
 	SettingFilled,
 } from '@ant-design/icons';
@@ -181,7 +182,7 @@ const UserNavBar = () => {
 				<div className={Styles.nav_container}>
 					<Link
 						href={'/user'}
-						className={`${Styles.nav_item} ${currentPage === 'dashboard' && Styles.selected_item}`}
+						className={`${Styles.nav_item} ${currentPage === 'user' && Styles.selected_item}`}
 					>
 						{getLang === 'বাং' ? 'ড্যাশবোর্ড' : 'Dashboard'}
 					</Link>
@@ -227,13 +228,10 @@ const UserNavBar = () => {
 								onChange={(value) => handleChangeLanguage(value)}
 							/>
 						</ConfigProvider>
-						<p
+						<LogoutOutlined
+							style={{ fontSize: '21px' }}
 							onClick={handleLogout}
-							className={Styles.nav_item}
-							style={{ cursor: 'pointer' }}
-						>
-							{getLang === 'বাং' ? 'লগআউট' : 'Logout'}
-						</p>
+						/>
 					</div>
 				</div>
 				<div className={Styles.mobile_nav_container}>
@@ -324,7 +322,7 @@ const UserNavBar = () => {
 									<Link
 										onClick={() => setOpen(false)}
 										href={'/user'}
-										className={`${Styles.nav_item} ${currentPage === 'dashboard' && Styles.selected_item}`}
+										className={`${Styles.nav_item} ${currentPage === 'user' && Styles.selected_item}`}
 									>
 										{getLang === 'বাং' ? 'ড্যাশবোর্ড' : 'Dashboard'}
 									</Link>
