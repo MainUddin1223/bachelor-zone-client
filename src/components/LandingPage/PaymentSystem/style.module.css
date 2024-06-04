@@ -42,6 +42,10 @@
 	width: 150px;
 	height: 150px;
 }
+.options {
+	display: flex;
+	gap: 10px;
+}
 /* Smartphone */
 @media (max-width: 576px) {
 	.container {
